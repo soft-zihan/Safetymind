@@ -1,0 +1,33 @@
+[submodule "qise"]
+	path = qise
+	url = https://github.com/WhitzardAgent/qise.git
+[submodule "clawshell"]
+	path = clawshell
+	url = https://github.com/clawshell/clawshell.git
+[submodule "ClawKeeper"]
+	path = ClawKeeper
+	url = https://github.com/SafeAI-Lab-X/ClawKeeper.git
+[submodule "NemoClaw"]
+	path = NemoClaw
+	url = https://github.com/NVIDIA/NemoClaw.git
+[submodule "pipelock"]
+	path = pipelock
+	url = https://github.com/luckyPipewrench/pipelock.git
+[submodule "openclaw/AgentGuard"]
+	path = openclaw/AgentGuard
+	url = https://github.com/WhitzardAgent/AgentGuard.git
+[submodule "openclaw/openclaw-security-assistant"]
+	path = openclaw/openclaw-security-assistant
+	url = https://github.com/aliyun/openclaw-security-assistant.git
+[submodule "CheryGuard/references/Vera"]
+	path = CheryGuard/references/Vera
+	url = https://github.com/Yunhao-Feng/Vera.git
+[submodule "CheryGuard/references/tinysafe-3"]
+	path = CheryGuard/references/tinysafe-3
+	url = https://github.com/jdleo/tinysafe-3.git
+[submodule "CheryGuard/references/geoffmunn-qwen3guard"]
+	path = CheryGuard/references/geoffmunn-qwen3guard
+	url = https://github.com/geoffmunn/Qwen3Guard.git
+[submodule ".agents/skills/html-ppt"]
+	path = .agents/skills/html-ppt
+	url = https://github.com/soft-zihan/editable-html-ppt-skill.git

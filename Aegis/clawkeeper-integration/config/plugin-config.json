@@ -1,0 +1,27 @@
+{
+  "autoHarden": true,
+  "driftMonitor": true,
+  "skillGuard": {
+    "enabled": true,
+    "intervalMinutes": 30
+  },
+  "contextJudge": {
+    "treatCommandExecutionAsHighRisk": true,
+    "maxToolStepsWithoutUserTurn": 5,
+    "requireUserConfirmationFor": ["bash", "exec", "write_file"],
+    "fingerprint": {
+      "enabled": true,
+      "lookbackDays": 7
+    },
+    "intentDrift": {
+      "enabled": true,
+      "threshold": 0.4
+    }
+  },
+  "budgetGuard": {
+    "enabled": true,
+    "maxInputTokens": 50000,
+    "maxOutputTokens": 50000,
+    "maxTotalTokens": 100000
+  }
+}

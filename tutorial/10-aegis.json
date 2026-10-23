@@ -1,0 +1,164 @@
+{
+  "chapters": [
+    {
+      "id": "practice",
+      "title": "实战演练",
+      "sections": [
+        {
+          "title": "背景知识：Aegis 安全管理平台",
+          "anchor": "practice-aegis-background",
+          "groupTitle": "Aegis — 安全管理平台",
+          "difficulty": "beginner",
+          "estimatedMinutes": 6,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Aegis 是 SafetyMind 的**统一管理界面**，将所有安全组件的能力整合到一个直观的前端界面中。它既是安全防护的控制中心，也是攻防演练的展示平台。"
+            },
+            {
+              "type": "text",
+              "text": "Aegis 通过「裸奔龙虾」和「安全龙虾」的双 Agent 对比，直观展示安全防护的效果。前端攻防演练页面实时展示 5 层防御链路的拦截情况。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "🖥️ **后端**：FastAPI (Python)",
+                  "🎨 **前端**：React 19 + Ant Design 5",
+                  "📄 **页面数**：38 个",
+                  "🔌 **API 路由**：16 个后端服务"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "后端架构：路由与服务",
+          "anchor": "practice-aegis-backend",
+          "groupTitle": "Aegis — 安全管理平台",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Aegis 后端基于 FastAPI 构建，分为 6 组路由模块和 8 个核心服务。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["路由组", "路径前缀", "职责"],
+                "rows": [
+                  ["core", "/api/security/*", "安全核心、攻防演示、WebSocket"],
+                  ["openclaw", "/api/openclaw/*", "金刚龙虾（Gateway/加固/ClawKeeper）"],
+                  ["hermes", "/api/hermes/*", "铁翼信使（Agent/安全/qise 接入）"],
+                  ["cheryguard", "/api/cheryguard/*", "CheryGuard 模型管理与推理"],
+                  ["clawshell", "/api/clawshell/*", "ClawShell 代理管理"],
+                  ["tools", "/api/tools/*", "qise 安全防护/评估/数据集"]
+                ]
+              }
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["服务", "职责"],
+                "rows": [
+                  ["openclaw_client", "Gateway API 客户端"],
+                  ["dual_agent_manager", "双 Agent 管理（裸奔/安全龙虾）"],
+                  ["security_analyzer", "安全分析引擎"],
+                  ["attack_simulator", "攻击模拟器（16 种场景）"],
+                  ["hermes_qise", "Hermes × qise SDK 接入服务"],
+                  ["hermes_security", "Hermes 7 层安全检查 + 安全扫描"],
+                  ["clawshell_proxy", "ClawShell 代理服务"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "前端架构：导航与页面",
+          "anchor": "practice-aegis-frontend",
+          "groupTitle": "Aegis — 安全管理平台",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Aegis 前端基于 React 19 + Ant Design 5 构建，包含 38 个页面，通过侧边栏导航组织。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "ordered",
+                "items": [
+                  "**总览** — 系统架构介绍、组件说明、实时状态汇总",
+                  "**智能体管理** — 金刚龙虾 / 铁翼信使 Agent 连接与状态",
+                  "**金刚龙虾安全** — 攻防演练（5 层防御可视化）、审计报告",
+                  "**铁翼信使安全** — 安全扫描（7 层架构）、插件管理、加固指南",
+                  "**qise 安全防护** — 智能体防护、防护规则、模型评估、数据集管理",
+                  "**ClawKeeper** — 三层防护框架管理",
+                  "**AgentGuard** — 零信任安全框架管理",
+                  "**ClawShell 代理** — 双模式安全代理管理"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "核心功能：攻防演练",
+          "anchor": "practice-aegis-demo",
+          "groupTitle": "Aegis — 安全管理平台",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "攻防演练是 Aegis 最核心的展示功能，通过 16 种攻击场景实时展示 5 层防御链路的拦截情况。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["维度", "裸奔龙虾", "安全龙虾"],
+                "rows": [
+                  ["输入安全", "10", "95"],
+                  ["输出安全", "15", "90"],
+                  ["工具安全", "20", "95"],
+                  ["数据安全", "30", "92"],
+                  ["环境安全", "25", "98"],
+                  ["审计能力", "10", "85"],
+                  ["总分", "20", "95"]
+                ]
+              }
+            },
+            {
+              "type": "text",
+              "text": "16 种攻击场景覆盖高中低危：提示注入、工具投毒、数据外传、凭据泄露、命令注入等。前端使用 ECharts 绘制 6 维安全评分雷达图，直观对比双龙虾的安全能力差异。"
+            }
+          ]
+        },
+        {
+          "title": "模块总结",
+          "anchor": "practice-aegis-summary",
+          "groupTitle": "Aegis — 安全管理平台",
+          "difficulty": "beginner",
+          "estimatedMinutes": 3,
+          "blocks": [
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "✅ Aegis 是 SafetyMind 的统一管理界面，38 个页面 + 16 个后端服务",
+                  "✅ 攻防演练：16 种攻击场景，5 层防御链路可视化",
+                  "✅ 6 维安全评分雷达图：裸奔龙虾 20 分 vs 安全龙虾 95 分",
+                  "✅ ClawShell 双 Agent 模式管理",
+                  "🔗 **与其他组件的关系**：Aegis 通过 API 调用所有安全组件的管理接口"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

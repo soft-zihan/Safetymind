@@ -1,0 +1,69 @@
+============================================================
+  CheryGuard - 下载公开数据集
+============================================================
+
+[17:49:49] 处理 wildguard (~1.5K)...
+  ⚠️ 加载失败: Dataset 'allenai/wildguard' doesn't exist on the Hub or cannot be accessed.
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/wildguard.jsonl
+
+[17:49:50] 处理 toxicchat (~1K)...
+  原始大小: 5082
+  有效样本: 10164
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/toxicchat.jsonl
+
+[17:49:53] 处理 beavertails (~1K)...
+  原始大小: 300567
+  截取至: 1000
+  有效样本: 2000
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/beavertails.jsonl
+
+[17:49:56] 处理 aegis2 (~2K)...
+  原始大小: 30007
+  有效样本: 44437
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/aegis2.jsonl
+
+[17:49:59] 处理 saferlhf (~500)...
+  ⚠️ 加载失败: Dataset 'PKU-Alignment/SafeRLHF' doesn't exist on the Hub or cannot be accessed.
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/saferlhf.jsonl
+
+[17:49:59] 处理 harmbench (~500)...
+  ⚠️ 加载失败: Dataset 'walledai/HarmBench' is a gated dataset on the Hub. Visit the dataset page at https://huggingface.co/datasets/walledai/HarmBench to ask for access.
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/harmbench.jsonl
+
+[17:50:00] 处理 xstest (~300)...
+  ⚠️ 加载失败: Dataset 'walledai/XSTest' is a gated dataset on the Hub. Visit the dataset page at https://huggingface.co/datasets/walledai/XSTest to ask for access.
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/xstest.jsonl
+
+[17:50:00] 处理 donotanswer (~300)...
+  原始大小: 939
+  截取至: 300
+  有效样本: 300
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/donotanswer.jsonl
+
+[17:50:03] 处理 simplesafetytests (~300)...
+  ⚠️ 加载失败: Unknown split "train". Should be one of ['test'].
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/simplesafetytests.jsonl
+
+[17:50:06] 处理 harmfulqa (~500)...
+  原始大小: 1960
+  截取至: 500
+  有效样本: 500
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/harmfulqa.jsonl
+
+============================================================
+  下载完成
+============================================================
+  总计样本: 57401 (去重后: 29449)
+  各数据集:
+    wildguard: 0
+    toxicchat: 10164
+    beavertails: 2000
+    aegis2: 44437
+    saferlhf: 0
+    harmbench: 0
+    xstest: 0
+    donotanswer: 300
+    simplesafetytests: 0
+    harmfulqa: 500
+  汇总文件: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/all_raw.jsonl
+============================================================

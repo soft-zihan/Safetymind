@@ -1,0 +1,121 @@
+{
+  "chapters": [
+    {
+      "id": "practice",
+      "title": "实战演练",
+      "sections": [
+        {
+          "title": "背景知识：NemoClaw 沙箱参考栈",
+          "anchor": "practice-nemoclaw-background",
+          "groupTitle": "NemoClaw — NVIDIA 沙箱参考栈",
+          "difficulty": "beginner",
+          "estimatedMinutes": 6,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "NemoClaw 是 NVIDIA 开源的沙箱化 AI Agent 安全运行参考栈。它在 NVIDIA OpenShell 沙箱内安全运行 Always-on AI Agent，支持 OpenClaw、Hermes、LangChain Deep Agents 三种 Agent 变体。"
+            },
+            {
+              "type": "text",
+              "text": "NemoClaw 提供了一个**安全运行环境**——即使 Agent 被攻破，攻击者也被限制在沙箱内，无法影响宿主机或其他服务。它是纵深防御的最后一层（L5），为上层所有安全机制提供运行环境保障。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "🌐 **语言**：TypeScript / Node.js (≥22)",
+                  "🏛️ **出品方**：NVIDIA",
+                  "📦 **部署**：Docker 容器化",
+                  "🔧 **CLI**：oclif 框架"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "沙箱化运行与安全加固",
+          "anchor": "practice-nemoclaw-sandbox",
+          "groupTitle": "NemoClaw — NVIDIA 沙箱参考栈",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "NemoClaw 基于 NVIDIA OpenShell 沙箱隔离，结合容器安全加固实现纵深防御。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "🏗️ **OpenShell 沙箱隔离**：容器级安全边界，纵深防御最后一层",
+                  "🔒 **容器安全加固**：capability 降级、进程限制",
+                  "🌐 **网络策略引擎**：静态/动态规则 + 操作员审批流，精细控制 Agent 出站流量",
+                  "📋 **引导式部署**：一键沙箱创建、自动安全加固蓝图"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "多 Agent 支持与 Skills 体系",
+          "anchor": "practice-nemoclaw-agents",
+          "groupTitle": "NemoClaw — NVIDIA 沙箱参考栈",
+          "difficulty": "beginner",
+          "estimatedMinutes": 5,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "NemoClaw 提供统一 CLI 入口，支持三种 Agent 变体，并内置丰富的 Skills 体系。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["Agent", "说明"],
+                "rows": [
+                  ["OpenClaw", "金刚龙虾，通用自主 Agent"],
+                  ["Hermes", "铁翼信使，通信协作 Agent"],
+                  ["LangChain Deep Agents", "LangChain 深度 Agent"]
+                ]
+              }
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "unordered",
+                "items": [
+                  "**Skills 体系**：入门引导、推理配置、安全加固、策略管理、远程部署",
+                  "**插件化架构**：Plugin + Blueprint 模式，支持多 Agent 变体热切换",
+                  "**路由推理**：统一推理网关，支持多云 Provider（含 AWS Bedrock）"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "模块总结",
+          "anchor": "practice-nemoclaw-summary",
+          "groupTitle": "NemoClaw — NVIDIA 沙箱参考栈",
+          "difficulty": "beginner",
+          "estimatedMinutes": 3,
+          "blocks": [
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "✅ NemoClaw 提供沙箱化安全运行环境，纵深防御 L5 层",
+                  "✅ 支持 OpenClaw / Hermes / LangChain 三种 Agent",
+                  "✅ 网络策略引擎精细控制 Agent 出站流量",
+                  "✅ 插件化架构，支持多 Agent 变体热切换",
+                  "🔗 **在纵深防御中的位置**：L5 层，为上层所有安全机制提供运行环境保障"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

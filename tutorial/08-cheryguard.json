@@ -1,0 +1,179 @@
+{
+  "chapters": [
+    {
+      "id": "practice",
+      "title": "实战演练",
+      "sections": [
+        {
+          "title": "背景知识：CheryGuard 安全分类模型",
+          "anchor": "practice-cheryguard-background",
+          "groupTitle": "CheryGuard — 安全分类模型",
+          "difficulty": "beginner",
+          "estimatedMinutes": 6,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "CheryGuard 是基于 Qwen3-0.6B 大语言模型微调的 AI 安全护栏，支持 Prompt/Response 双向风险分类。它是 SafetyMind 的**本地安全分类引擎**，用极小的模型参数量（仅训练 1.67% 参数）实现生产级安全分类性能。"
+            },
+            {
+              "type": "text",
+              "text": "CheryGuard 提供两种架构选择：**Gen（生成式）** 和 **Stream（判别式）**，适应不同场景需求。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "🌐 **语言**：Python",
+                  "🧠 **基座模型**：Qwen3-0.6B",
+                  "🔧 **训练方式**：PEFT (LoRA) 微调",
+                  "⚡ **可训练参数**：仅 1.67%（10M / 596M）"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "双架构对比：Gen vs Stream",
+          "anchor": "practice-cheryguard-architectures",
+          "groupTitle": "CheryGuard — 安全分类模型",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 10,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "CheryGuard 的两种架构各有适用场景：Gen 适合精细分类，Stream 适合实时检测。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["维度", "Gen v2（生成式）", "Stream v2（判别式）"],
+                "rows": [
+                  ["基座模型", "Qwen3-0.6B-Instruct", "Qwen3-0.6B-Base"],
+                  ["分类方式", "自回归生成文本标签", "双 Risk Head 直接输出概率"],
+                  ["输出粒度", "9 类安全类别 + 3 级风险等级", "二分类 Safe/Unsafe"],
+                  ["推理速度", "~954ms（需解码生成）", "~14ms（单次前向传播，68× 加速）"],
+                  ["输出可靠性", "需解析，可能失败", "100% 有效"],
+                  ["适用场景", "离线评估、精细分类", "实时流式拦截"]
+                ]
+              }
+            },
+            {
+              "type": "diagram",
+              "diagram": {
+                "language": "mermaid",
+                "content": "graph TB\n    subgraph Gen[\"Gen 架构（生成式）\"]\n        G1[Qwen3-0.6B-Instruct + LoRA] --> G2[model.generate]\n        G2 --> G3[解析文本标签]\n        G3 --> G4[9 类 + 3 级]\n    end\n    subgraph Stream[\"Stream 架构（判别式）\"]\n        S1[Qwen3-0.6B-Base + LoRA] --> S2[model.forward]\n        S2 --> S3{Dual Risk Heads}\n        S3 --> S4[Response Head]\n        S3 --> S5[Query Head]\n        S4 --> S6[Safe/Unsafe]\n        S5 --> S6\n    end\n    style Gen fill:#fff3e0\n    style Stream fill:#e8f5e9",
+                "caption": "Gen vs Stream 架构对比"
+              }
+            }
+          ]
+        },
+        {
+          "title": "LoRA 高效微调",
+          "anchor": "practice-cheryguard-lora",
+          "groupTitle": "CheryGuard — 安全分类模型",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "CheryGuard 使用 PEFT 库的 LoRA（Low-Rank Adaptation）进行参数高效微调，仅训练 1.67% 的参数即可达到生产级性能。"
+            },
+            {
+              "type": "code",
+              "code": {
+                "language": "python",
+                "content": "from peft import LoraConfig, get_peft_model, TaskType\n\nlora_config = LoraConfig(\n    r=16,                          # LoRA rank\n    lora_alpha=32,                 # LoRA alpha (2×r)\n    lora_dropout=0.05,\n    bias=\"none\",\n    task_type=TaskType.CAUSAL_LM,\n    target_modules=[               # 7 个 target modules\n        \"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\",  # Attention 层\n        \"gate_proj\", \"up_proj\", \"down_proj\"       # MLP 层\n    ]\n)\n# 可训练参数: 10M (1.67%) | 冻结参数: 596M (98.33%)",
+                "caption": "CheryGuard LoRA 配置"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Stream 架构：Dual Risk Heads",
+          "anchor": "practice-cheryguard-dual-heads",
+          "groupTitle": "CheryGuard — 安全分类模型",
+          "difficulty": "advanced",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Stream 模型采用官方 Qwen3Guard 设计，通过 **Loss Masking** 实现双头独立训练。Response Risk Head 训练 response 样本，Query Risk Head 训练 prompt 样本。"
+            },
+            {
+              "type": "code",
+              "code": {
+                "language": "python",
+                "content": "class CheryGuardStreamModel(nn.Module):\n    def __init__(self):\n        # Backbone: Qwen3-0.6B-Base + LoRA\n        self.backbone = get_peft_model(AutoModel.from_pretrained(...), lora_config)\n        \n        # Response Risk Head\n        self.response_risk_pre = nn.Linear(1024, 512, bias=False)\n        self.response_risk_norm = RMSNorm(512)\n        self.response_risk_head = nn.Linear(512, 2, bias=False)\n        \n        # Query Risk Head\n        self.query_risk_pre = nn.Linear(1024, 512, bias=False)\n        self.query_risk_norm = RMSNorm(512)\n        self.query_risk_head = nn.Linear(512, 2, bias=False)",
+                "caption": "Dual Risk Heads 架构"
+              }
+            },
+            {
+              "type": "text",
+              "text": "推理时根据 task_type 选择 head：`task_type == \"prompt\"` → 使用 `query_risk_head`，`task_type == \"response\"` → 使用 `response_risk_head`。"
+            }
+          ]
+        },
+        {
+          "title": "训练数据与处理",
+          "anchor": "practice-cheryguard-data",
+          "groupTitle": "CheryGuard — 安全分类模型",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 5,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "CheryGuard 使用多个公开数据集进行训练，并通过教师模型（Qwen3Guard）进行标注。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["数据集", "来源", "用途"],
+                "rows": [
+                  ["Aegis 2.0", "NVIDIA", "44K 样本，prompt/response 双维度标注"],
+                  ["BeaverTails", "PKU-Alignment", "2K 样本，14 种有害类别"],
+                  ["HarmfulQA", "declare-lab", "500 样本，全 unsafe"]
+                ]
+              }
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "ordered",
+                "items": [
+                  "原始数据混合 → 去重",
+                  "qwen3.7-plus Teacher 标注（翻转率仅 5.2%，原始质量已很好）",
+                  "Gen 训练集：5,128 条（sample_balanced 采样）",
+                  "Stream 训练集：5,076 条（句子级边界标注）"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "模块总结",
+          "anchor": "practice-cheryguard-summary",
+          "groupTitle": "CheryGuard — 安全分类模型",
+          "difficulty": "beginner",
+          "estimatedMinutes": 3,
+          "blocks": [
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "✅ CheryGuard 是 SafetyMind 的本地安全分类引擎",
+                  "✅ 双架构选择：Gen（精细分类）vs Stream（实时检测，68× 加速）",
+                  "✅ LoRA 高效微调，仅训练 1.67% 参数",
+                  "✅ Dual Risk Heads 实现双头独立训练",
+                  "🔗 **与 qise 的关系**：为 qise 的三层决策管线提供 SLM 层本地安全分类能力",
+                  "🔗 **与 Aegis 的关系**：Aegis 通过 `/api/cheryguard/*` 管理模型推理和训练"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

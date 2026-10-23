@@ -1,0 +1,11 @@
+.DS_Store
+.git.bak/
+venv/
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+target/
+CheryGuard/gen_v2/outputs/
+CheryGuard/stream/outputs/
+CheryGuard/stream_v2/outputs/

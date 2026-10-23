@@ -1,0 +1,142 @@
+{
+  "chapters": [
+    {
+      "id": "practice",
+      "title": "实战演练",
+      "sections": [
+        {
+          "title": "背景知识：Pipelock AI 防火墙",
+          "anchor": "practice-pipelock-background",
+          "groupTitle": "Pipelock — AI Agent 防火墙",
+          "difficulty": "beginner",
+          "estimatedMinutes": 6,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Pipelock 是一个面向 AI Agent 的开源出站安全防火墙，实现了可验证出站控制（VEC）。它部署在 AI Agent 与网络之间，对 HTTP、WebSocket、MCP、A2A 等所有中介流量进行内容级检测。"
+            },
+            {
+              "type": "text",
+              "text": "Pipelock 解决一个关键问题：**Agent 持有密钥但没有网络权限，Pipelock 有网络权限但没有密钥**。这种能力分离（VEC）确保即使 Agent 被攻破，攻击者也无法同时获得密钥和网络访问能力。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "🌐 **语言**：Go",
+                  "📦 **部署**：单二进制，零依赖",
+                  "🔐 **核心能力**：VEC 可验证出站控制",
+                  "🛡️ **检测能力**：65 种凭据模式 + 29 种注入模式"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "VEC 可验证出站控制",
+          "anchor": "practice-pipelock-vec",
+          "groupTitle": "Pipelock — AI Agent 防火墙",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "VEC（Verifiable Egress Control）是 Pipelock 的核心创新。传统防火墙只检查流量，VEC 还引入了**能力分离**和**可验证凭证**的概念。"
+            },
+            {
+              "type": "diagram",
+              "diagram": {
+                "language": "mermaid",
+                "content": "graph LR\n    subgraph Agent[\"AI Agent\"]\n        K[持有密钥]\n        N[无网络权限]\n    end\n    subgraph Pipelock[\"Pipelock\"]\n        K2[无密钥]\n        N2[有网络权限]\n    end\n    Agent -->|请求+签名| Pipelock\n    Pipelock -->|验证+转发| Internet[互联网]\n    Pipelock -->|Action Receipt| Agent\n    style Agent fill:#fff3e0\n    style Pipelock fill:#e3f2fd",
+                "caption": "VEC 能力分离架构"
+              }
+            },
+            {
+              "type": "text",
+              "text": "每个操作生成可独立验证的签名凭证（Action Receipt），使用中介信封（RFC 8941）实现跨联邦信任，支持多 Agent 协作场景。"
+            }
+          ]
+        },
+        {
+          "title": "11 层 URL 扫描管线",
+          "anchor": "practice-pipelock-scanning",
+          "groupTitle": "Pipelock — AI Agent 防火墙",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Pipelock 对 Agent 的每一个出站请求进行 11 层深度检测，覆盖凭据泄露、SSRF、注入等多种威胁。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "ordered",
+                "items": [
+                  "DLP 模式匹配：65 种凭据特征（API Key、Token、密码等）",
+                  "路径熵分析：检测可疑 URL 结构",
+                  "SSRF 防护：阻止内网访问",
+                  "DNS 重绑定防御：防止 DNS 欺骗",
+                  "双向 MCP 代理：扫描工具请求与响应",
+                  "响应注入检测：6 轮文本归一化，29 种注入模式",
+                  "BIP-39 助记词检测：阻止加密货币助记词外传",
+                  "区块链地址投毒防护：检测地址替换攻击"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "进程沙箱与安全特性",
+          "anchor": "practice-pipelock-sandbox",
+          "groupTitle": "Pipelock — AI Agent 防火墙",
+          "difficulty": "advanced",
+          "estimatedMinutes": 6,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Pipelock 还提供操作系统级进程沙箱和多种安全特性。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["特性", "说明"],
+                "rows": [
+                  ["进程沙箱（Linux）", "Landlock + seccomp + netns，零特权隔离"],
+                  ["进程沙箱（macOS）", "sandbox-exec"],
+                  ["紧急 kill switch", "一键停止所有 Agent 网络活动"],
+                  ["飞行记录器", "Ed25519 签名哈希链日志，防篡改审计"],
+                  ["金丝雀令牌", "诱饵凭据检测泄露"],
+                  ["Learn-and-Lock", "行为合约机制，学习正常行为后锁定"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "模块总结",
+          "anchor": "practice-pipelock-summary",
+          "groupTitle": "Pipelock — AI Agent 防火墙",
+          "difficulty": "beginner",
+          "estimatedMinutes": 3,
+          "blocks": [
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "✅ Pipelock 实现 VEC 可验证出站控制，能力分离架构",
+                  "✅ 11 层 URL 扫描管线，65 种凭据 + 29 种注入检测",
+                  "✅ 单二进制零依赖，Go 编译，部署极简",
+                  "✅ 进程沙箱 + 飞行记录器 + 金丝雀令牌等安全特性",
+                  "🔗 **在纵深防御中的位置**：作为出站防火墙，在 Agent 与网络之间进行内容级检测"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

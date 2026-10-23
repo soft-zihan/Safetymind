@@ -1,0 +1,61 @@
+{
+  "train": {
+    "name": "train",
+    "count": 5128,
+    "sources": {
+      "beavertails": 1534,
+      "aegis2": 3187,
+      "harmfulqa": 407
+    },
+    "task_types": {
+      "response": 2373,
+      "prompt": 2755
+    },
+    "labels": {
+      "Unsafe": 2800,
+      "Safe": 2328
+    }
+  },
+  "val": {
+    "name": "val",
+    "count": 641,
+    "sources": {
+      "beavertails": 203,
+      "aegis2": 397,
+      "harmfulqa": 41
+    },
+    "task_types": {
+      "prompt": 335,
+      "response": 306
+    },
+    "labels": {
+      "Safe": 291,
+      "Unsafe": 350
+    }
+  },
+  "test": {
+    "name": "test",
+    "count": 641,
+    "sources": {
+      "aegis2": 416,
+      "harmfulqa": 52,
+      "beavertails": 173
+    },
+    "task_types": {
+      "prompt": 365,
+      "response": 276
+    },
+    "labels": {
+      "Unsafe": 350,
+      "Safe": 291
+    }
+  },
+  "total": 6410,
+  "sampling": {
+    "aegis2_prompt": 2000,
+    "aegis2_response": 2000,
+    "beavertails_prompt": 955,
+    "beavertails_response": 955,
+    "harmfulqa_prompt": 500
+  }
+}

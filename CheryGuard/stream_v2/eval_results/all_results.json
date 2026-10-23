@@ -1,0 +1,247 @@
+{
+  "official_stream": {
+    "error": "跳过官方模型评估"
+  },
+  "cheryguard_stream_v1_checkpoint-epoch-1": {
+    "response_loc": {
+      "accuracy": 0.34686346863468637,
+      "f1": 0.5150684931506849,
+      "precision": 1.0,
+      "recall": 0.34686346863468637,
+      "tp": 282,
+      "fp": 0,
+      "fn": 531,
+      "model": "cheryguard_stream_v1_checkpoint-epoch-1",
+      "n_samples": 813,
+      "time_seconds": 73.35846185684204,
+      "pred_distribution": {
+        "Safe": 531,
+        "Unsafe": 282
+      },
+      "gt_distribution": {
+        "Unsafe": 813
+      }
+    },
+    "thinking_loc": {
+      "accuracy": 0.21616871704745166,
+      "f1": 0.35549132947976875,
+      "precision": 1.0,
+      "recall": 0.21616871704745166,
+      "tp": 123,
+      "fp": 0,
+      "fn": 446,
+      "model": "cheryguard_stream_v1_checkpoint-epoch-1",
+      "n_samples": 569,
+      "time_seconds": 336.0672810077667,
+      "pred_distribution": {
+        "Safe": 446,
+        "Unsafe": 123
+      },
+      "gt_distribution": {
+        "Unsafe": 569
+      }
+    }
+  },
+  "cheryguard_stream_v1_checkpoint-epoch-2": {
+    "response_loc": {
+      "accuracy": 0.3862238622386224,
+      "f1": 0.5572315882874889,
+      "precision": 1.0,
+      "recall": 0.3862238622386224,
+      "tp": 314,
+      "fp": 0,
+      "fn": 499,
+      "model": "cheryguard_stream_v1_checkpoint-epoch-2",
+      "n_samples": 813,
+      "time_seconds": 72.53871631622314,
+      "pred_distribution": {
+        "Safe": 499,
+        "Unsafe": 314
+      },
+      "gt_distribution": {
+        "Unsafe": 813
+      }
+    },
+    "thinking_loc": {
+      "accuracy": 0.28998242530755713,
+      "f1": 0.46216216216216216,
+      "precision": 1.0,
+      "recall": 0.30052724077328646,
+      "tp": 171,
+      "fp": 0,
+      "fn": 398,
+      "model": "cheryguard_stream_v1_checkpoint-epoch-2",
+      "n_samples": 569,
+      "time_seconds": 341.44792222976685,
+      "pred_distribution": {
+        "Safe": 398,
+        "Unsafe": 165,
+        "Controversial": 6
+      },
+      "gt_distribution": {
+        "Unsafe": 569
+      }
+    }
+  },
+  "cheryguard_stream_v1_checkpoint-epoch-3": {
+    "response_loc": {
+      "accuracy": 0.24723247232472326,
+      "f1": 0.39644970414201186,
+      "precision": 1.0,
+      "recall": 0.24723247232472326,
+      "tp": 201,
+      "fp": 0,
+      "fn": 612,
+      "model": "cheryguard_stream_v1_checkpoint-epoch-3",
+      "n_samples": 813,
+      "time_seconds": 71.98296189308167,
+      "pred_distribution": {
+        "Safe": 612,
+        "Unsafe": 201
+      },
+      "gt_distribution": {
+        "Unsafe": 813
+      }
+    },
+    "thinking_loc": {
+      "accuracy": 0.10896309314586995,
+      "f1": 0.2022116903633491,
+      "precision": 1.0,
+      "recall": 0.11247803163444639,
+      "tp": 64,
+      "fp": 0,
+      "fn": 505,
+      "model": "cheryguard_stream_v1_checkpoint-epoch-3",
+      "n_samples": 569,
+      "time_seconds": 344.34253787994385,
+      "pred_distribution": {
+        "Safe": 505,
+        "Unsafe": 62,
+        "Controversial": 2
+      },
+      "gt_distribution": {
+        "Unsafe": 569
+      }
+    }
+  },
+  "cheryguard_stream_v2_checkpoint-epoch-1": {
+    "response_loc": {
+      "accuracy": 0.7675276752767528,
+      "f1": 0.8684759916492694,
+      "precision": 1.0,
+      "recall": 0.7675276752767528,
+      "tp": 624,
+      "fp": 0,
+      "fn": 189,
+      "model": "cheryguard_stream_v2_checkpoint-epoch-1",
+      "n_samples": 813,
+      "time_seconds": 66.98138284683228,
+      "pred_distribution": {
+        "Safe": 189,
+        "Unsafe": 624
+      },
+      "gt_distribution": {
+        "Unsafe": 813
+      }
+    },
+    "thinking_loc": {
+      "accuracy": 0.6977152899824253,
+      "f1": 0.8219461697722567,
+      "precision": 1.0,
+      "recall": 0.6977152899824253,
+      "tp": 397,
+      "fp": 0,
+      "fn": 172,
+      "model": "cheryguard_stream_v2_checkpoint-epoch-1",
+      "n_samples": 569,
+      "time_seconds": 322.44210410118103,
+      "pred_distribution": {
+        "Unsafe": 397,
+        "Safe": 172
+      },
+      "gt_distribution": {
+        "Unsafe": 569
+      }
+    }
+  },
+  "cheryguard_stream_v2_checkpoint-epoch-2": {
+    "response_loc": {
+      "accuracy": 0.8671586715867159,
+      "f1": 0.9288537549407114,
+      "precision": 1.0,
+      "recall": 0.8671586715867159,
+      "tp": 705,
+      "fp": 0,
+      "fn": 108,
+      "model": "cheryguard_stream_v2_checkpoint-epoch-2",
+      "n_samples": 813,
+      "time_seconds": 69.18049693107605,
+      "pred_distribution": {
+        "Unsafe": 705,
+        "Safe": 108
+      },
+      "gt_distribution": {
+        "Unsafe": 813
+      }
+    },
+    "thinking_loc": {
+      "accuracy": 0.7908611599297012,
+      "f1": 0.8832188420019628,
+      "precision": 1.0,
+      "recall": 0.7908611599297012,
+      "tp": 450,
+      "fp": 0,
+      "fn": 119,
+      "model": "cheryguard_stream_v2_checkpoint-epoch-2",
+      "n_samples": 569,
+      "time_seconds": 324.7656021118164,
+      "pred_distribution": {
+        "Unsafe": 450,
+        "Safe": 119
+      },
+      "gt_distribution": {
+        "Unsafe": 569
+      }
+    }
+  },
+  "cheryguard_stream_v2_checkpoint-epoch-3": {
+    "response_loc": {
+      "accuracy": 0.8474784747847478,
+      "f1": 0.9174434087882823,
+      "precision": 1.0,
+      "recall": 0.8474784747847478,
+      "tp": 689,
+      "fp": 0,
+      "fn": 124,
+      "model": "cheryguard_stream_v2_checkpoint-epoch-3",
+      "n_samples": 813,
+      "time_seconds": 69.8183822631836,
+      "pred_distribution": {
+        "Safe": 124,
+        "Unsafe": 689
+      },
+      "gt_distribution": {
+        "Unsafe": 813
+      }
+    },
+    "thinking_loc": {
+      "accuracy": 0.7381370826010545,
+      "f1": 0.8493427704752275,
+      "precision": 1.0,
+      "recall": 0.7381370826010545,
+      "tp": 420,
+      "fp": 0,
+      "fn": 149,
+      "model": "cheryguard_stream_v2_checkpoint-epoch-3",
+      "n_samples": 569,
+      "time_seconds": 338.24755215644836,
+      "pred_distribution": {
+        "Unsafe": 420,
+        "Safe": 149
+      },
+      "gt_distribution": {
+        "Unsafe": 569
+      }
+    }
+  }
+}

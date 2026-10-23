@@ -1,0 +1,200 @@
+{
+  "chapters": [
+    {
+      "id": "practice",
+      "title": "实战演练",
+      "sections": [
+        {
+          "title": "背景知识：qise 安全框架",
+          "anchor": "practice-qise-background",
+          "groupTitle": "qise — 核心安全框架",
+          "difficulty": "beginner",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "qise 是 SafetyMind 的**安全引擎核心**，负责所有安全守卫的实际判定逻辑。它独立于具体 Agent 运行，通过 Proxy 代理或 SDK 适配器两种方式接入，为不同智能体提供统一的安全防护能力。"
+            },
+            {
+              "type": "text",
+              "text": "qise 的设计哲学是 **Local-first**——所有状态、备份、事件均存储在本地 `~/.qise/`，不依赖云端，保护用户隐私。同时采用**规则+AI 双层防御**：低误报的规则 Guard 默认强制执行（enforce），AI 驱动的 Guard 默认观察模式（observe），可按需启用 SLM 语义审查。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "📦 **版本**：0.2.0（Alpha/MVP）",
+                  "🏛️ **出品方**：上海创智学院（SII）| 复旦大学",
+                  "🌐 **语言**：Python",
+                  "🔧 **接入方式**：Proxy 代理 / SDK 适配器"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "14 类安全守卫",
+          "anchor": "practice-qise-guards",
+          "groupTitle": "qise — 核心安全框架",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 10,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "qise 的核心能力是 14 类安全守卫，覆盖 Ingress（入口）/ Egress（出口）/ Output（输出）三条流水线。每个 Guard 负责检测一类特定的安全风险。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["守卫", "阶段", "职责"],
+                "rows": [
+                  ["PromptGuard", "Ingress", "提示注入检测"],
+                  ["CommandGuard", "Ingress", "危险命令阻断"],
+                  ["ToolPoisonGuard", "Ingress", "工具投毒识别"],
+                  ["FilesystemGuard", "Egress", "文件系统保护"],
+                  ["NetworkGuard", "Egress", "网络风险拦截"],
+                  ["ExfilGuard", "Egress", "数据外传检测"],
+                  ["CredentialGuard", "Output", "凭据泄露防护"],
+                  ["CanNetworkGuard", "Egress", "CAN 总线安全（车用）"],
+                  ["FirmwareIntegrityGuard", "Ingress", "固件完整性（车用）"],
+                  ["VehicleDataGuard", "Output", "车辆数据隐私（车用）"],
+                  ["ObdDiagnosticGuard", "Egress", "OBD/UDS 诊断（车用）"],
+                  ["OtaUpdateGuard", "Ingress", "OTA 更新安全（车用）"]
+                ]
+              }
+            },
+            {
+              "type": "text",
+              "text": "其中 14 个为通用守卫，5 个为车用守卫（CanNetwork、FirmwareIntegrity、VehicleData、ObdDiagnostic、OtaUpdate），体现了 qise 在车联网安全领域的扩展能力。"
+            }
+          ]
+        },
+        {
+          "title": "三层决策管线",
+          "anchor": "practice-qise-pipeline",
+          "groupTitle": "qise — 核心安全框架",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 10,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "qise 的三层决策管线是其核心设计之一。设计哲学是：**能用规则解决的不用模型（快），必须用语义的才上模型（准）**。"
+            },
+            {
+              "type": "diagram",
+              "diagram": {
+                "language": "mermaid",
+                "content": "graph LR\n    A[输入] --> B{规则引擎<br/>快速判定}\n    B -->|确定| C[放行/拦截]\n    B -->|不确定| D{本地 SLM<br/>语义审查}\n    D -->|确定| E[放行/拦截]\n    D -->|不确定| F{远程 LLM<br/>兜底判定}\n    F --> G[最终决策]\n    style B fill:#c8e6c9\n    style D fill:#fff9c4\n    style F fill:#ffccbc",
+                "caption": "三层决策管线：Rules → SLM → LLM"
+              }
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["层级", "机制", "延迟", "特点"],
+                "rows": [
+                  ["L1 规则引擎", "正则匹配、关键词检测", "< 1ms", "低延迟，零误报，覆盖已知模式"],
+                  ["L2 本地 SLM", "Ollama 推理（qwen3:4b）", "~100ms", "语义理解，本地运行，隐私保护"],
+                  ["L3 远程 LLM", "OpenAI/Claude API", "~1s", "高精度，兜底判定，需网络"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "接入方式：Proxy 与 SDK",
+          "anchor": "practice-qise-integration",
+          "groupTitle": "qise — 核心安全框架",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "qise 提供两种接入方式：**Proxy 代理模式**（零代码集成）和 **SDK 适配器模式**（进程内检查）。"
+            },
+            {
+              "type": "code",
+              "code": {
+                "language": "bash",
+                "content": "# Proxy 模式（推荐，零代码）\nqise protect\nexport OPENAI_API_BASE=http://localhost:8822/v1\n# 所有 API 调用自动经过安全检查",
+                "caption": "Proxy 模式接入"
+              }
+            },
+            {
+              "type": "code",
+              "code": {
+                "language": "python",
+                "content": "# SDK 模式（Hermes 接入示例）\nfrom qise.adapters.hermes import QiseHermesAdapter\n\nshield = Shield.from_config()\nadapter = QiseHermesAdapter(shield, session_id=\"hermes-session\")\n\n# 工具调用包装 — 执行前自动安全检查\nsafe_tools = [adapter.wrap_tool(tool) for tool in my_tools]\n\n# 输出检查 — 凭据/PII 泄露检测\nresult = adapter.check_agent_output(response)",
+                "caption": "SDK 适配器模式接入"
+              }
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["适配器", "目标框架"],
+                "rows": [
+                  ["QiseHermesAdapter", "Hermes 铁翼信使"],
+                  ["LangGraphAdapter", "LangGraph"],
+                  ["OpenAIAgentsAdapter", "OpenAI Agents SDK"],
+                  ["NanobotAdapter", "Nanobot"],
+                  ["NexAUAdapter", "NexAU"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "安全分类模型：QiseGuard",
+          "anchor": "practice-qise-model",
+          "groupTitle": "qise — 核心安全框架",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 5,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "qise 内置了 QiseGuard 系列安全分类模型，基于 Qwen3.5 微调，用于三层决策管线的 SLM 层判定。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["模型", "基座", "参数量", "F1", "用途"],
+                "rows": [
+                  ["QiseGuard-2B", "Qwen3.5-2B", "2B LoRA", "0.973", "主力安全分类"],
+                  ["QiseGuard-0.8B", "Qwen3.5-0.8B", "0.8B LoRA", "0.941", "快速筛查"]
+                ]
+              }
+            },
+            {
+              "type": "text",
+              "text": "模型训练管线位于 `model_training/` 目录，包含完整的 QiseGuard-SLM 训练数据准备流程，覆盖 10 类安全分类任务，整合 13 个 HuggingFace 数据集 + 14 个 GitHub 数据源。"
+            }
+          ]
+        },
+        {
+          "title": "模块总结",
+          "anchor": "practice-qise-summary",
+          "groupTitle": "qise — 核心安全框架",
+          "difficulty": "beginner",
+          "estimatedMinutes": 3,
+          "blocks": [
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "✅ qise 是 SafetyMind 的安全引擎核心，提供 14 类 Guard + 三层决策管线",
+                  "✅ 支持 Proxy（零代码）和 SDK（进程内）两种接入方式",
+                  "✅ Local-first 设计，所有状态存储在本地",
+                  "✅ 规则+AI 双层防御，兼顾性能与深度",
+                  "🔗 **与 CheryGuard 的关系**：CheryGuard 为 qise 的 SLM 层提供本地安全分类能力",
+                  "🔗 **与 Aegis 的关系**：Aegis 后端通过 `/api/tools/qise/*` 调用 qise 的管理接口"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

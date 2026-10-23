@@ -1,0 +1,801 @@
+{
+  "base_model": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.35127478753541075,
+      "f1": 0.5322033898305084,
+      "precision": 0.513911620294599,
+      "recall": 0.5518453427065027,
+      "tp": 314,
+      "fp": 297,
+      "fn": 255,
+      "model": "base_qwen3_0.6B",
+      "n_samples": 1059,
+      "time_seconds": 440.48120188713074,
+      "pred_distribution": {
+        "Unsafe": 332,
+        "Safe": 448,
+        "Controversial": 279
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.53,
+      "f1": 0.4460431654676259,
+      "precision": 0.6458333333333334,
+      "recall": 0.34065934065934067,
+      "tp": 31,
+      "fp": 17,
+      "fn": 60,
+      "model": "base_qwen3_0.6B",
+      "n_samples": 200,
+      "time_seconds": 102.0188057422638,
+      "pred_distribution": {
+        "Safe": 152,
+        "Unsafe": 18,
+        "Controversial": 30
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.58,
+      "f1": 0.8636363636363636,
+      "precision": 1.0,
+      "recall": 0.76,
+      "tp": 76,
+      "fp": 0,
+      "fn": 24,
+      "model": "base_qwen3_0.6B",
+      "n_samples": 100,
+      "time_seconds": 42.213534116744995,
+      "pred_distribution": {
+        "Unsafe": 58,
+        "Controversial": 18,
+        "Safe": 24
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "official_qwen3guard": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.5193578847969783,
+      "f1": 0.7140090380890898,
+      "precision": 0.5642857142857143,
+      "recall": 0.9718804920913884,
+      "tp": 553,
+      "fp": 427,
+      "fn": 16,
+      "model": "official_qwen3guard_0.6B",
+      "n_samples": 1059,
+      "time_seconds": 404.00165009498596,
+      "pred_distribution": {
+        "Controversial": 150,
+        "Safe": 79,
+        "Unsafe": 830
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.7,
+      "f1": 0.8219178082191781,
+      "precision": 0.703125,
+      "recall": 0.989010989010989,
+      "tp": 90,
+      "fp": 38,
+      "fn": 1,
+      "model": "official_qwen3guard_0.6B",
+      "n_samples": 200,
+      "time_seconds": 78.67901706695557,
+      "pred_distribution": {
+        "Safe": 72,
+        "Unsafe": 76,
+        "Controversial": 52
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.92,
+      "f1": 0.98989898989899,
+      "precision": 1.0,
+      "recall": 0.98,
+      "tp": 98,
+      "fp": 0,
+      "fn": 2,
+      "model": "official_qwen3guard_0.6B",
+      "n_samples": 100,
+      "time_seconds": 39.48083186149597,
+      "pred_distribution": {
+        "Unsafe": 92,
+        "Safe": 2,
+        "Controversial": 6
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "cheryguard_v1": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.47780925401322,
+      "f1": 0.3807390817469205,
+      "precision": 0.5246913580246914,
+      "recall": 0.29876977152899825,
+      "tp": 170,
+      "fp": 154,
+      "fn": 399,
+      "model": "cheryguard_v1",
+      "n_samples": 1059,
+      "time_seconds": 2335.9450709819794,
+      "pred_distribution": {
+        "Safe": 735,
+        "Unsafe": 324
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.83,
+      "f1": 0.7792207792207793,
+      "precision": 0.9523809523809523,
+      "recall": 0.6593406593406593,
+      "tp": 60,
+      "fp": 3,
+      "fn": 31,
+      "model": "cheryguard_v1",
+      "n_samples": 200,
+      "time_seconds": 561.231714963913,
+      "pred_distribution": {
+        "Safe": 137,
+        "Unsafe": 63
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.56,
+      "f1": 0.717948717948718,
+      "precision": 1.0,
+      "recall": 0.56,
+      "tp": 56,
+      "fp": 0,
+      "fn": 44,
+      "model": "cheryguard_v1",
+      "n_samples": 100,
+      "time_seconds": 219.5522210597992,
+      "pred_distribution": {
+        "Unsafe": 56,
+        "Safe": 44
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "cheryguard_v2_checkpoint-100": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.5901794145420207,
+      "f1": 0.6998616874135547,
+      "precision": 0.5769669327251995,
+      "recall": 0.8892794376098418,
+      "tp": 506,
+      "fp": 371,
+      "fn": 63,
+      "model": "cheryguard_v2_checkpoint-100",
+      "n_samples": 1059,
+      "time_seconds": 763.0370180606842,
+      "pred_distribution": {
+        "Safe": 182,
+        "Unsafe": 877
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.72,
+      "f1": 0.641025641025641,
+      "precision": 0.7692307692307693,
+      "recall": 0.5494505494505495,
+      "tp": 50,
+      "fp": 15,
+      "fn": 41,
+      "model": "cheryguard_v2_checkpoint-100",
+      "n_samples": 200,
+      "time_seconds": 151.30613899230957,
+      "pred_distribution": {
+        "Safe": 135,
+        "Unsafe": 65
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.93,
+      "f1": 0.9637305699481865,
+      "precision": 1.0,
+      "recall": 0.93,
+      "tp": 93,
+      "fp": 0,
+      "fn": 7,
+      "model": "cheryguard_v2_checkpoint-100",
+      "n_samples": 100,
+      "time_seconds": 72.15345668792725,
+      "pred_distribution": {
+        "Unsafe": 93,
+        "Safe": 7
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "cheryguard_v2_checkpoint-150": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.5703493862134089,
+      "f1": 0.7122074636306134,
+      "precision": 0.5563241106719368,
+      "recall": 0.9894551845342706,
+      "tp": 563,
+      "fp": 449,
+      "fn": 6,
+      "model": "cheryguard_v2_checkpoint-150",
+      "n_samples": 1059,
+      "time_seconds": 764.2439851760864,
+      "pred_distribution": {
+        "Unsafe": 1012,
+        "Safe": 47
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.69,
+      "f1": 0.693069306930693,
+      "precision": 0.6306306306306306,
+      "recall": 0.7692307692307693,
+      "tp": 70,
+      "fp": 41,
+      "fn": 21,
+      "model": "cheryguard_v2_checkpoint-150",
+      "n_samples": 200,
+      "time_seconds": 150.82658696174622,
+      "pred_distribution": {
+        "Safe": 89,
+        "Unsafe": 111
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.96,
+      "f1": 0.9795918367346939,
+      "precision": 1.0,
+      "recall": 0.96,
+      "tp": 96,
+      "fp": 0,
+      "fn": 4,
+      "model": "cheryguard_v2_checkpoint-150",
+      "n_samples": 100,
+      "time_seconds": 72.32049775123596,
+      "pred_distribution": {
+        "Unsafe": 96,
+        "Safe": 4
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "cheryguard_v2_checkpoint-200": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.5949008498583569,
+      "f1": 0.666147859922179,
+      "precision": 0.5977653631284916,
+      "recall": 0.7521968365553603,
+      "tp": 428,
+      "fp": 288,
+      "fn": 141,
+      "model": "cheryguard_v2_checkpoint-200",
+      "n_samples": 1059,
+      "time_seconds": 763.6686038970947,
+      "pred_distribution": {
+        "Safe": 343,
+        "Unsafe": 716
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.7,
+      "f1": 0.5522388059701493,
+      "precision": 0.8604651162790697,
+      "recall": 0.4065934065934066,
+      "tp": 37,
+      "fp": 6,
+      "fn": 54,
+      "model": "cheryguard_v2_checkpoint-200",
+      "n_samples": 200,
+      "time_seconds": 151.3005428314209,
+      "pred_distribution": {
+        "Safe": 157,
+        "Unsafe": 43
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.84,
+      "f1": 0.9130434782608696,
+      "precision": 1.0,
+      "recall": 0.84,
+      "tp": 84,
+      "fp": 0,
+      "fn": 16,
+      "model": "cheryguard_v2_checkpoint-200",
+      "n_samples": 100,
+      "time_seconds": 72.19712018966675,
+      "pred_distribution": {
+        "Unsafe": 84,
+        "Safe": 16
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "cheryguard_v2_checkpoint-250": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.5816808309726157,
+      "f1": 0.6951135581555402,
+      "precision": 0.5712669683257918,
+      "recall": 0.8875219683655536,
+      "tp": 505,
+      "fp": 379,
+      "fn": 64,
+      "model": "cheryguard_v2_checkpoint-250",
+      "n_samples": 1059,
+      "time_seconds": 763.6439259052277,
+      "pred_distribution": {
+        "Safe": 175,
+        "Unsafe": 884
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.735,
+      "f1": 0.6971428571428572,
+      "precision": 0.7261904761904762,
+      "recall": 0.6703296703296703,
+      "tp": 61,
+      "fp": 23,
+      "fn": 30,
+      "model": "cheryguard_v2_checkpoint-250",
+      "n_samples": 200,
+      "time_seconds": 151.9719340801239,
+      "pred_distribution": {
+        "Safe": 116,
+        "Unsafe": 84
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.94,
+      "f1": 0.9690721649484536,
+      "precision": 1.0,
+      "recall": 0.94,
+      "tp": 94,
+      "fp": 0,
+      "fn": 6,
+      "model": "cheryguard_v2_checkpoint-250",
+      "n_samples": 100,
+      "time_seconds": 72.15212798118591,
+      "pred_distribution": {
+        "Unsafe": 94,
+        "Safe": 6
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "cheryguard_v2_checkpoint-300": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.5750708215297451,
+      "f1": 0.7122762148337597,
+      "precision": 0.5597989949748744,
+      "recall": 0.9789103690685413,
+      "tp": 557,
+      "fp": 438,
+      "fn": 12,
+      "model": "cheryguard_v2_checkpoint-300",
+      "n_samples": 1059,
+      "time_seconds": 764.8221027851105,
+      "pred_distribution": {
+        "Unsafe": 995,
+        "Safe": 64
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.715,
+      "f1": 0.7164179104477612,
+      "precision": 0.6545454545454545,
+      "recall": 0.7912087912087912,
+      "tp": 72,
+      "fp": 38,
+      "fn": 19,
+      "model": "cheryguard_v2_checkpoint-300",
+      "n_samples": 200,
+      "time_seconds": 151.9866280555725,
+      "pred_distribution": {
+        "Safe": 90,
+        "Unsafe": 110
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.95,
+      "f1": 0.9743589743589743,
+      "precision": 1.0,
+      "recall": 0.95,
+      "tp": 95,
+      "fp": 0,
+      "fn": 5,
+      "model": "cheryguard_v2_checkpoint-300",
+      "n_samples": 100,
+      "time_seconds": 72.32136082649231,
+      "pred_distribution": {
+        "Unsafe": 95,
+        "Safe": 5
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "cheryguard_v2_checkpoint-350": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.5882908404154863,
+      "f1": 0.6933895921237693,
+      "precision": 0.5779601406799532,
+      "recall": 0.8664323374340949,
+      "tp": 493,
+      "fp": 360,
+      "fn": 76,
+      "model": "cheryguard_v2_checkpoint-350",
+      "n_samples": 1059,
+      "time_seconds": 764.1085679531097,
+      "pred_distribution": {
+        "Safe": 206,
+        "Unsafe": 853
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.785,
+      "f1": 0.732919254658385,
+      "precision": 0.8428571428571429,
+      "recall": 0.6483516483516484,
+      "tp": 59,
+      "fp": 11,
+      "fn": 32,
+      "model": "cheryguard_v2_checkpoint-350",
+      "n_samples": 200,
+      "time_seconds": 152.28866505622864,
+      "pred_distribution": {
+        "Safe": 130,
+        "Unsafe": 70
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.89,
+      "f1": 0.9417989417989417,
+      "precision": 1.0,
+      "recall": 0.89,
+      "tp": 89,
+      "fp": 0,
+      "fn": 11,
+      "model": "cheryguard_v2_checkpoint-350",
+      "n_samples": 100,
+      "time_seconds": 72.29187798500061,
+      "pred_distribution": {
+        "Unsafe": 89,
+        "Safe": 11
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "cheryguard_v2_checkpoint-400": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.5949008498583569,
+      "f1": 0.6870897155361051,
+      "precision": 0.587281795511222,
+      "recall": 0.827768014059754,
+      "tp": 471,
+      "fp": 331,
+      "fn": 98,
+      "model": "cheryguard_v2_checkpoint-400",
+      "n_samples": 1059,
+      "time_seconds": 764.7961287498474,
+      "pred_distribution": {
+        "Safe": 257,
+        "Unsafe": 802
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.795,
+      "f1": 0.7388535031847132,
+      "precision": 0.8787878787878788,
+      "recall": 0.6373626373626373,
+      "tp": 58,
+      "fp": 8,
+      "fn": 33,
+      "model": "cheryguard_v2_checkpoint-400",
+      "n_samples": 200,
+      "time_seconds": 152.6934769153595,
+      "pred_distribution": {
+        "Safe": 134,
+        "Unsafe": 66
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.85,
+      "f1": 0.9189189189189189,
+      "precision": 1.0,
+      "recall": 0.85,
+      "tp": 85,
+      "fp": 0,
+      "fn": 15,
+      "model": "cheryguard_v2_checkpoint-400",
+      "n_samples": 100,
+      "time_seconds": 72.28835201263428,
+      "pred_distribution": {
+        "Unsafe": 85,
+        "Safe": 15
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "cheryguard_v2_checkpoint-450": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.5939565627950897,
+      "f1": 0.7066848567530695,
+      "precision": 0.5774804905239688,
+      "recall": 0.9103690685413005,
+      "tp": 518,
+      "fp": 379,
+      "fn": 51,
+      "model": "cheryguard_v2_checkpoint-450",
+      "n_samples": 1059,
+      "time_seconds": 768.5408766269684,
+      "pred_distribution": {
+        "Safe": 162,
+        "Unsafe": 897
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.79,
+      "f1": 0.7529411764705883,
+      "precision": 0.810126582278481,
+      "recall": 0.7032967032967034,
+      "tp": 64,
+      "fp": 15,
+      "fn": 27,
+      "model": "cheryguard_v2_checkpoint-450",
+      "n_samples": 200,
+      "time_seconds": 152.31512117385864,
+      "pred_distribution": {
+        "Safe": 121,
+        "Unsafe": 79
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.92,
+      "f1": 0.9583333333333334,
+      "precision": 1.0,
+      "recall": 0.92,
+      "tp": 92,
+      "fp": 0,
+      "fn": 8,
+      "model": "cheryguard_v2_checkpoint-450",
+      "n_samples": 100,
+      "time_seconds": 72.21022605895996,
+      "pred_distribution": {
+        "Unsafe": 92,
+        "Safe": 8
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "cheryguard_v2_checkpoint-483": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.5939565627950897,
+      "f1": 0.7042640990371389,
+      "precision": 0.5785310734463277,
+      "recall": 0.8998242530755711,
+      "tp": 512,
+      "fp": 373,
+      "fn": 57,
+      "model": "cheryguard_v2_checkpoint-483",
+      "n_samples": 1059,
+      "time_seconds": 764.4996249675751,
+      "pred_distribution": {
+        "Safe": 174,
+        "Unsafe": 885
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.79,
+      "f1": 0.7529411764705883,
+      "precision": 0.810126582278481,
+      "recall": 0.7032967032967034,
+      "tp": 64,
+      "fp": 15,
+      "fn": 27,
+      "model": "cheryguard_v2_checkpoint-483",
+      "n_samples": 200,
+      "time_seconds": 151.81803798675537,
+      "pred_distribution": {
+        "Safe": 121,
+        "Unsafe": 79
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.91,
+      "f1": 0.9528795811518325,
+      "precision": 1.0,
+      "recall": 0.91,
+      "tp": 91,
+      "fp": 0,
+      "fn": 9,
+      "model": "cheryguard_v2_checkpoint-483",
+      "n_samples": 100,
+      "time_seconds": 72.24269413948059,
+      "pred_distribution": {
+        "Unsafe": 91,
+        "Safe": 9
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  },
+  "cheryguard_v2_checkpoint-50": {
+    "Qwen3GuardTest": {
+      "accuracy": 0.546742209631728,
+      "f1": 0.702970297029703,
+      "precision": 0.542502387774594,
+      "recall": 0.9982425307557118,
+      "tp": 568,
+      "fp": 479,
+      "fn": 1,
+      "model": "cheryguard_v2_checkpoint-50",
+      "n_samples": 1059,
+      "time_seconds": 1136.3223059177399,
+      "pred_distribution": {
+        "Unsafe": 1047,
+        "Safe": 12
+      },
+      "gt_distribution": {
+        "Unsafe": 569,
+        "Safe": 490
+      }
+    },
+    "ToxicChat": {
+      "accuracy": 0.525,
+      "f1": 0.5991561181434599,
+      "precision": 0.4863013698630137,
+      "recall": 0.7802197802197802,
+      "tp": 71,
+      "fp": 75,
+      "fn": 20,
+      "model": "cheryguard_v2_checkpoint-50",
+      "n_samples": 200,
+      "time_seconds": 217.63786602020264,
+      "pred_distribution": {
+        "Unsafe": 146,
+        "Safe": 54
+      },
+      "gt_distribution": {
+        "Safe": 109,
+        "Unsafe": 91
+      }
+    },
+    "SimpleSafetyTests": {
+      "accuracy": 0.97,
+      "f1": 0.9847715736040609,
+      "precision": 1.0,
+      "recall": 0.97,
+      "tp": 97,
+      "fp": 0,
+      "fn": 3,
+      "model": "cheryguard_v2_checkpoint-50",
+      "n_samples": 100,
+      "time_seconds": 132.67227792739868,
+      "pred_distribution": {
+        "Unsafe": 97,
+        "Safe": 3
+      },
+      "gt_distribution": {
+        "Unsafe": 100
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "files": [
+    "00-meta.json",
+    "01-preparation.json",
+    "02-architecture.json",
+    "03-qise.json",
+    "04-clawkeeper.json",
+    "05-clawshell.json",
+    "06-pipelock.json",
+    "07-nemoclaw.json",
+    "08-cheryguard.json",
+    "09-agentguard.json",
+    "10-aegis.json"
+  ]
+}

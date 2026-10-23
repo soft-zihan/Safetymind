@@ -1,0 +1,77 @@
+============================================================
+  CheryGuard - 下载公开数据集
+============================================================
+
+[17:38:51] 处理 wildguard (~1.5K)...
+  ⚠️ 加载失败: Dataset 'allenai/wildguard' doesn't exist on the Hub or cannot be accessed.
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/wildguard.jsonl
+
+[17:38:52] 处理 toxicchat (~1K)...
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 5082 examples [00:00, 86534.56 examples/s]
+Generating test split: 0 examples [00:00, ? examples/s]Generating test split: 5083 examples [00:00, 118159.56 examples/s]
+  原始大小: 5082
+  有效样本: 10164
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/toxicchat.jsonl
+
+[17:38:56] 处理 beavertails (~1K)...
+Generating 330k_train split:   0%|          | 0/300567 [00:00<?, ? examples/s]Generating 330k_train split:   7%|▋         | 21333/300567 [00:00<00:02, 135510.57 examples/s]Generating 330k_train split:  14%|█▍        | 42574/300567 [00:00<00:01, 139979.73 examples/s]Generating 330k_train split:  21%|██        | 63839/300567 [00:00<00:01, 143180.99 examples/s]Generating 330k_train split:  28%|██▊       | 85134/300567 [00:00<00:01, 147714.46 examples/s]Generating 330k_train split:  35%|███▌      | 106416/300567 [00:00<00:01, 136223.16 examples/s]Generating 330k_train split:  42%|████▏     | 127724/300567 [00:00<00:01, 138889.54 examples/s]Generating 330k_train split:  50%|████▉     | 149012/300567 [00:01<00:01, 142647.38 examples/s]Generating 330k_train split:  57%|█████▋    | 170271/300567 [00:01<00:00, 148148.76 examples/s]Generating 330k_train split:  64%|██████▎   | 191535/300567 [00:01<00:00, 149620.04 examples/s]Generating 330k_train split:  71%|███████   | 212812/300567 [00:01<00:00, 151080.63 examples/s]Generating 330k_train split:  78%|███████▊  | 234106/300567 [00:01<00:00, 152940.03 examples/s]Generating 330k_train split:  85%|████████▍ | 255377/300567 [00:01<00:00, 153033.57 examples/s]Generating 330k_train split:  92%|█████████▏| 276729/300567 [00:01<00:00, 155685.20 examples/s]Generating 330k_train split:  99%|█████████▉| 297990/300567 [00:02<00:00, 153532.39 examples/s]Generating 330k_train split: 100%|██████████| 300567/300567 [00:02<00:00, 148205.16 examples/s]
+Generating 330k_test split:   0%|          | 0/33396 [00:00<?, ? examples/s]Generating 330k_test split:  64%|██████▍   | 21331/33396 [00:00<00:00, 169177.22 examples/s]Generating 330k_test split: 100%|██████████| 33396/33396 [00:00<00:00, 172410.24 examples/s]
+Generating 30k_train split:   0%|          | 0/27186 [00:00<?, ? examples/s]Generating 30k_train split: 100%|██████████| 27186/27186 [00:00<00:00, 233596.41 examples/s]Generating 30k_train split: 100%|██████████| 27186/27186 [00:00<00:00, 232531.25 examples/s]
+Generating 30k_test split:   0%|          | 0/3021 [00:00<?, ? examples/s]Generating 30k_test split: 100%|██████████| 3021/3021 [00:00<00:00, 201034.32 examples/s]
+  原始大小: 300567
+  截取至: 1000
+  有效样本: 2000
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/beavertails.jsonl
+
+[17:39:01] 处理 aegis2 (~2K)...
+  原始大小: 30007
+  有效样本: 44437
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/aegis2.jsonl
+
+[17:39:06] 处理 saferlhf (~500)...
+  ⚠️ 加载失败: Dataset 'PKU-Alignment/SafeRLHF' doesn't exist on the Hub or cannot be accessed.
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/saferlhf.jsonl
+
+[17:39:06] 处理 harmbench (~500)...
+  ⚠️ 加载失败: Dataset 'walledai/HarmBench' is a gated dataset on the Hub. Visit the dataset page at https://huggingface.co/datasets/walledai/HarmBench to ask for access.
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/harmbench.jsonl
+
+[17:39:07] 处理 xstest (~300)...
+  ⚠️ 加载失败: Dataset 'walledai/XSTest' is a gated dataset on the Hub. Visit the dataset page at https://huggingface.co/datasets/walledai/XSTest to ask for access.
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/xstest.jsonl
+
+[17:39:07] 处理 donotanswer (~300)...
+Generating train split:   0%|          | 0/939 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 939/939 [00:00<00:00, 41796.60 examples/s]
+  原始大小: 939
+  截取至: 300
+  有效样本: 300
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/donotanswer.jsonl
+
+[17:39:10] 处理 simplesafetytests (~300)...
+Generating test split:   0%|          | 0/100 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 100/100 [00:00<00:00, 19834.04 examples/s]
+  ⚠️ 加载失败: Unknown split "train". Should be one of ['test'].
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/simplesafetytests.jsonl
+
+[17:39:13] 处理 harmfulqa (~500)...
+  原始大小: 1960
+  截取至: 500
+  有效样本: 500
+  保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/harmfulqa.jsonl
+
+============================================================
+  下载完成
+============================================================
+  总计样本: 57401 (去重后: 29449)
+  各数据集:
+    wildguard: 0
+    toxicchat: 10164
+    beavertails: 2000
+    aegis2: 44437
+    saferlhf: 0
+    harmbench: 0
+    xstest: 0
+    donotanswer: 300
+    simplesafetytests: 0
+    harmfulqa: 500
+  汇总文件: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/raw/all_raw.jsonl
+============================================================

@@ -1,0 +1,132 @@
+{
+  "chapters": [
+    {
+      "id": "practice",
+      "title": "实战演练",
+      "sections": [
+        {
+          "title": "背景知识：ClawShell 安全代理",
+          "anchor": "practice-clawshell-background",
+          "groupTitle": "ClawShell — 安全特权代理",
+          "difficulty": "beginner",
+          "estimatedMinutes": 6,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "ClawShell 是纵深防御的 **L1 层**——最外层防线。它的核心思想是：**Agent 永远不接触真实 API Key**。通过虚拟密钥映射，即使 Agent 被攻破，攻击者拿到的也只是无用的虚拟密钥。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "🌐 **语言**：Rust",
+                  "💾 **内存占用**：< 10MB",
+                  "🔌 **系统服务端口**：21789",
+                  "🔑 **核心能力**：虚拟密钥隔离 + DLP 数据防泄漏"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "API 密钥隔离机制",
+          "anchor": "practice-clawshell-key-isolation",
+          "groupTitle": "ClawShell — 安全特权代理",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "ClawShell 的密钥隔离是其最核心的安全能力。传统方案中，Agent 直接持有真实 API Key，一旦 Agent 被注入或攻破，密钥即泄露。ClawShell 通过虚拟密钥映射彻底解决这个问题。"
+            },
+            {
+              "type": "diagram",
+              "diagram": {
+                "language": "mermaid",
+                "content": "sequenceDiagram\n    participant Agent as AI Agent\n    participant CS as ClawShell\n    participant API as 目标 API\n    \n    Agent->>CS: 请求（vk_xxxxx 虚拟密钥）\n    CS->>CS: 查表：vk_xxxxx → sk-real-key\n    CS->>CS: 替换为真实密钥\n    CS->>API: 请求（sk-real-key 真实密钥）\n    API-->>CS: 响应\n    CS->>CS: DLP 扫描响应内容\n    CS-->>Agent: 响应（Agent 只看到虚拟密钥）\n    note over CS: 真实密钥存储在<br/>/etc/clawshell（权限 700）",
+                "caption": "ClawShell 密钥隔离流程"
+              }
+            },
+            {
+              "type": "text",
+              "text": "真实密钥存储在 `/etc/clawshell`（权限 700），由 Unix 文件系统权限保护。无需外部 IdP/Vault 依赖，简单可靠。"
+            }
+          ]
+        },
+        {
+          "title": "DLP 数据防泄漏",
+          "anchor": "practice-clawshell-dlp",
+          "groupTitle": "ClawShell — 安全特权代理",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 6,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "ClawShell 对请求/响应体进行 PII（个人身份信息）扫描，支持 `block`（拦截）和 `redact`（脱敏）两种模式。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["检测类型", "模式", "说明"],
+                "rows": [
+                  ["SSN（社会安全号）", "block / redact", "拦截或脱敏"],
+                  ["信用卡号", "block / redact", "Luhn 算法验证"],
+                  ["手机号", "block / redact", "正则匹配"],
+                  ["自定义模式", "可配置", "正则表达式扩展"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "双 Agent 模式",
+          "anchor": "practice-clawshell-dual-agent",
+          "groupTitle": "ClawShell — 安全特权代理",
+          "difficulty": "beginner",
+          "estimatedMinutes": 5,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "ClawShell 同时适配 OpenClaw 和 Hermes，前端提供独立管理页面。顶部 Segmented 控件切换 OpenClaw/Hermes 视图，实时显示代理状态和 Agent 连接状态。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "unordered",
+                "items": [
+                  "支持 OpenClaw 与 Hermes Agent 一键 `onboard` 向导式接入",
+                  "同时提供 Cargo 与 NPM 两种安装方式",
+                  "`/admin/stats` 端点暴露请求计数、Token 用量，仅允许本地回环访问"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "模块总结",
+          "anchor": "practice-clawshell-summary",
+          "groupTitle": "ClawShell — 安全特权代理",
+          "difficulty": "beginner",
+          "estimatedMinutes": 3,
+          "blocks": [
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "✅ ClawShell 是纵深防御 L1 层，最外层防线",
+                  "✅ 核心思想：Agent 永远不接触真实 API Key",
+                  "✅ 基于 Unix 文件系统权限的安全边界，无需外部 IdP/Vault",
+                  "✅ 极致轻量：内存占用 < 10MB",
+                  "🔗 **与 qise 的关系**：ClawShell 代理的请求转发到 qise Proxy（端口 8822）进行 L2 层检查",
+                  "🔗 **与 Aegis 的关系**：Aegis 通过 `/api/clawshell/*` 管理 ClawShell 服务"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

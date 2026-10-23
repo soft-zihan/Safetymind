@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.spec
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+*.local
+
+# ClawShell (保护 API 密钥)
+clawshell/*.toml
+!clawshell/clawshell.example.toml
+
+# Logs
+*.log
+logs/
+
+# Node modules (frontend)
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# OS
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Backup files
+*.bak
+*.backup
+
+.qoder/
+
+# 上游仓库（用户 clone，不纳入版本控制）
+SafetyHermes/*/
+!SafetyHermes/.gitkeep
+automotive-claude-code-agents/
+

@@ -1,0 +1,143 @@
+/* 龙虾容器样式 */
+.lobster-container {
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* 龙虾 emoji 基础样式 */
+.lobster-emoji {
+  font-size: 120px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* 安全龙虾 - 金属质感 */
+.lobster-metallic {
+  position: relative;
+  animation: metallicShine 3s ease-in-out infinite;
+}
+
+.lobster-metallic::before {
+  content: '🦞';
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 120px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(192, 192, 192, 0.8))
+          drop-shadow(0 0 40px rgba(169, 169, 169, 0.6))
+          drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.3));
+  animation: metallicGlow 2s ease-in-out infinite;
+}
+
+.lobster-metallic::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(192, 192, 192, 0.2) 50%,
+    rgba(169, 169, 169, 0.1) 100%
+  );
+  z-index: -1;
+  box-shadow: 
+    0 0 30px rgba(192, 192, 192, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* 金属光泽动画 */
+@keyframes metallicShine {
+  0%, 100% {
+    filter: brightness(1) contrast(1);
+  }
+  50% {
+    filter: brightness(1.1) contrast(1.1);
+  }
+}
+
+@keyframes metallicGlow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+/* 裸奔龙虾 - 简单样式 */
+.lobster-naked {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  opacity: 0.9;
+}
+
+/* 标签样式 */
+.lobster-label {
+  margin-top: 16px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.lobster-label-metallic {
+  background: linear-gradient(90deg, #C0C0C0, #E8E8E8, #C0C0C0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lobster-label-naked {
+  color: #ff4d4f;
+}
+
+/* 安全评分卡片 */
+.score-card {
+  transition: all 0.3s ease;
+}
+
+.score-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* 暂无数据提示 */
+.no-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* 测试统计信息 */
+.test-stats {
+  margin-top: 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.test-stats-pass {
+  background: #f6ffed;
+  color: #52c41a;
+}
+
+.test-stats-fail {
+  background: #fff1f0;
+  color: #ff4d4f;
+}

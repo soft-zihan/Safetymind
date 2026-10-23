@@ -1,0 +1,148 @@
+{
+  "chapters": [
+    {
+      "id": "practice",
+      "title": "实战演练",
+      "sections": [
+        {
+          "title": "背景知识：ClawKeeper 三层防护",
+          "anchor": "practice-clawkeeper-background",
+          "groupTitle": "ClawKeeper — 三层防护框架",
+          "difficulty": "beginner",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "ClawKeeper 是面向 OpenClaw 自主智能体的综合实时安全框架，被誉为「OpenClaw 的诺顿安全卫士」。它的设计哲学是**执行与安全解耦**——安全逻辑不嵌入智能体内部，而是通过三个独立层级从不同维度提供防护。"
+            },
+            {
+              "type": "text",
+              "text": "这种架构使得安全策略可以独立演进，不影响 Agent 核心逻辑。ClawKeeper 当前为 OpenClaw 专属，下一版本将兼容 Hermes。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "🌐 **语言**：TypeScript / JavaScript",
+                  "🏗️ **架构**：Skill 层 + Plugin 层 + Watcher 层",
+                  "🔐 **完整性保护**：HMAC-SHA256",
+                  "📦 **部署**：Docker"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "三层架构详解",
+          "anchor": "practice-clawkeeper-layers",
+          "groupTitle": "ClawKeeper — 三层防护框架",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 12,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "ClawKeeper 的三层架构从指令级、运行时、系统级三个维度提供互补的安全防护。"
+            },
+            {
+              "type": "diagram",
+              "diagram": {
+                "language": "mermaid",
+                "content": "graph TB\n    subgraph Skill[\"Skill 层 — 指令级防护\"]\n        S1[Markdown 安全策略]\n        S2[注入 Agent 上下文]\n        S3[零配置，Agent 直接解读]\n    end\n    subgraph Plugin[\"Plugin 层 — 运行时拦截\"]\n        P1[配置加固]\n        P2[威胁检测]\n        P3[行为扫描]\n        P4[审计日志]\n    end\n    subgraph Watcher[\"Watcher 层 — 独立监控\"]\n        W1[上下文研判]\n        W2[执行干预]\n        W3[漂移监控]\n        W4[双模式部署]\n    end\n    Skill --> Plugin --> Watcher\n    style Skill fill:#e8f5e9\n    style Plugin fill:#fff3e0\n    style Watcher fill:#e3f2fd",
+                "caption": "ClawKeeper 三层架构"
+              }
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["层级", "模块", "职责", "特点"],
+                "rows": [
+                  ["Skill 层", "clawkeeper-skill/", "指令级防护。以结构化 Markdown 定义安全策略，注入智能体上下文", "零配置，策略即文档"],
+                  ["Plugin 层", "clawkeeper-plugin/", "运行时执行器。配置加固、威胁检测（覆盖 OWASP ASI 十大风险）、行为扫描、审计日志", "实时拦截"],
+                  ["Watcher 层", "clawkeeper-watcher/", "系统级独立监控治理。解耦于智能体内部逻辑，支持上下文研判、执行干预、漂移监控", "独立进程，可跨平台复用"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "Skill 层：策略即文档",
+          "anchor": "practice-clawkeeper-skill",
+          "groupTitle": "ClawKeeper — 三层防护框架",
+          "difficulty": "beginner",
+          "estimatedMinutes": 5,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Skill 层以结构化 Markdown 定义安全策略，注入智能体上下文。这种设计的巧妙之处在于：**策略即文档**——人类可读，Agent 可执行，无需复杂的配置语法。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "unordered",
+                "items": [
+                  "`windows-safety-guide` — Windows 系统安全约束",
+                  "`feishu-safety-guide` — 飞书等第三方平台安全规则",
+                  "策略文件位于 `clawkeeper-skill/skills/` 目录",
+                  "Agent 启动时自动加载 Skill 策略"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "Watcher 层：独立治理",
+          "anchor": "practice-clawkeeper-watcher",
+          "groupTitle": "ClawKeeper — 三层防护框架",
+          "difficulty": "advanced",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Watcher 层是 ClawKeeper 最具创新性的设计——与 Agent 内部逻辑完全解耦的独立监控中间件。它作为独立进程运行，通过上下文研判和执行干预来保障安全。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "🔍 **上下文研判**：结合多轮对话历史判断意图，而非仅看单次操作",
+                  "⚡ **执行干预**：`continue` / `ask_user` / `stop` 三种决策",
+                  "📊 **漂移监控**：检测 Agent 行为偏离预期目标",
+                  "🔄 **双模式部署**：Remote（只读研判）与 Local（可信加固回滚）"
+                ]
+              }
+            },
+            {
+              "type": "text",
+              "text": "双模式部署的设计考虑：Remote 模式适用于不信任环境（只读分析），Local 模式适用于信任环境（可执行加固和回滚）。两种模式隔离运行，互不干扰。"
+            }
+          ]
+        },
+        {
+          "title": "模块总结",
+          "anchor": "practice-clawkeeper-summary",
+          "groupTitle": "ClawKeeper — 三层防护框架",
+          "difficulty": "beginner",
+          "estimatedMinutes": 3,
+          "blocks": [
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "✅ ClawKeeper 通过 Skill/Plugin/Watcher 三层提供互补的安全防护",
+                  "✅ 执行-安全解耦：Watcher 层与 Agent 逻辑完全分离，实现监管分离",
+                  "✅ 零配置 Skill 防护：安全策略即 Markdown，无需复杂配置",
+                  "✅ Fail-closed 策略：权限存储采用 HMAC-SHA256 完整性保护，默认拒绝",
+                  "🔗 **与 AgentGuard 的关系**：AgentGuard 检测到风险后可触发 ClawKeeper Watcher 层独立研判",
+                  "🔗 **与 Aegis 的关系**：Aegis 通过 `/api/openclaw/clawkeeper` 管理 ClawKeeper"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

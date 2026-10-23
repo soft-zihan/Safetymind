@@ -1,0 +1,76 @@
+{
+  "layers": [
+    {
+      "id": "L1_clawshell",
+      "name": "ClawShell 代理层",
+      "icon": "🔒",
+      "description": "Rust 高性能透明代理，拦截所有 API 响应进行 DLP 扫描",
+      "toggleable": true,
+      "requires_restart": false,
+      "components": [
+        { "name": "DLP 扫描", "description": "正则匹配 SSN、信用卡、手机号、邮箱等敏感数据并脱敏" },
+        { "name": "API Key 脱敏", "description": "自动将明文密钥替换为 [REDACTED]" },
+        { "name": "透明代理", "description": "零代码集成的流量拦截" }
+      ]
+    },
+    {
+      "id": "L2_qise",
+      "name": "qise 守卫层",
+      "icon": "🛡️",
+      "description": "19 个安全守卫 + 三层决策管线（Rules → SLM → LLM）",
+      "toggleable": true,
+      "requires_restart": false,
+      "components": [
+        { "name": "PromptGuard", "description": "提示注入检测（指令覆盖、身份覆盖、安全绕过）" },
+        { "name": "CommandGuard", "description": "危险命令过滤（rm -rf、管道到 shell、fork 炸弹）" },
+        { "name": "CredentialGuard", "description": "凭据泄露检测（30+ 正则：API Key、私钥、密码）" },
+        { "name": "ExfilGuard", "description": "数据外泄检测（curl 发送敏感数据、恶意域名）" },
+        { "name": "FilesystemGuard", "description": "文件系统访问控制（/etc/shadow、~/.ssh）" },
+        { "name": "NetworkGuard", "description": "网络请求过滤（SSH 内网、恶意连接）" },
+        { "name": "ResourceGuard", "description": "资源滥用检测" },
+        { "name": "SupplyChainGuard", "description": "供应链安全检测" }
+      ]
+    },
+    {
+      "id": "L3_openclaw",
+      "name": "OpenClaw 加固层",
+      "icon": "🦞",
+      "description": "AGENTS.md 红线规则 + safeBins 白名单 + SOUL.md 安全规则",
+      "toggleable": true,
+      "requires_restart": true,
+      "components": [
+        { "name": "AGENTS.md 红线", "description": "破坏性操作需确认，trash > rm" },
+        { "name": "safeBins 白名单", "description": "仅允许 12 个安全命令（ls/grep/cat/find 等）" },
+        { "name": "SOUL.md 规则", "description": "安全行为规则注入（防社工、防去抑制化）" },
+        { "name": "环境变量引用", "description": "${VAR} 替代明文密钥" }
+      ]
+    },
+    {
+      "id": "L4_clawkeeper",
+      "name": "ClawKeeper 防护层",
+      "icon": "🔗",
+      "description": "三层防护框架：Skill 策略注入 + Plugin Hook 拦截 + Watcher 监控",
+      "toggleable": true,
+      "requires_restart": false,
+      "components": [
+        { "name": "Skill 策略注入", "description": "安全策略通过 Skill 注入到 Agent 上下文" },
+        { "name": "Plugin Hook 拦截", "description": "运行时 Hook 拦截危险操作" },
+        { "name": "Watcher 监控", "description": "独立监控进程，异常告警" }
+      ]
+    },
+    {
+      "id": "L5_docker",
+      "name": "Docker 沙箱层",
+      "icon": "🐳",
+      "description": "容器级隔离，物理层面阻断攻击",
+      "toggleable": true,
+      "requires_restart": true,
+      "components": [
+        { "name": "容器隔离", "description": "独立命名空间，与宿主机完全隔离" },
+        { "name": "只读文件系统", "description": "根文件系统只读，无法写入系统文件" },
+        { "name": "网络隔离", "description": "network=none 禁止所有网络访问" },
+        { "name": "资源限制", "description": "memory=2g / cpus=1.0 防止资源滥用" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "agentguard",
+  "activation": {
+    "onStartup": true
+  },
+  "uiHints": {
+    "configPath": {
+      "label": "AgentGuard Config Path",
+      "help": "Path to the AgentGuard JSON config file used by this OpenClaw plugin."
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "configPath": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "chapters": [
+    {
+      "id": "architecture",
+      "title": "架构设计",
+      "sections": [
+        {
+          "title": "整体架构总览",
+          "anchor": "arch-overview",
+          "groupTitle": "系统架构",
+          "difficulty": "beginner",
+          "estimatedMinutes": 10,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "SafetyMind 的架构围绕两大智能体（OpenClaw 和 Hermes）展开，通过 8 大安全组件提供统一的纵深防御能力。Aegis 管理平台作为统一入口，整合所有安全组件的管理和监控能力。"
+            },
+            {
+              "type": "diagram",
+              "diagram": {
+                "language": "mermaid",
+                "content": "graph TB\n    subgraph Aegis[\"Aegis 管理平台<br/>React 前端 · FastAPI 后端 · 38 个页面\"]\n        UI[前端界面]\n        API[后端 API]\n    end\n    \n    subgraph Agents[\"双智能体\"]\n        OC[OpenClaw<br/>金刚龙虾]\n        HM[Hermes<br/>铁翼信使]\n    end\n    \n    subgraph Shared[\"双轨共享安全组件\"]\n        QISE[qise<br/>安全框架<br/>Python]\n        CS[ClawShell<br/>安全代理<br/>Rust]\n        PL[Pipelock<br/>AI防火墙<br/>Go]\n        NC[NemoClaw<br/>沙箱栈<br/>TypeScript]\n    end\n    \n    subgraph Models[\"安全分类模型\"]\n        CG[CheryGuard<br/>Gen/Stream<br/>LoRA微调]\n    end\n    \n    subgraph OpenClawOnly[\"OpenClaw 专属\"]\n        CK[ClawKeeper<br/>三层防护]\n        AG[AgentGuard<br/>零信任框架]\n    end\n    \n    UI --> API\n    API --> OC\n    API --> HM\n    OC --> QISE\n    OC --> CS\n    HM --> QISE\n    HM --> CS\n    QISE --> CG\n    OC --> PL\n    HM --> PL\n    OC --> NC\n    HM --> NC\n    OC --> CK\n    OC --> AG\n    \n    style Aegis fill:#e3f2fd\n    style Shared fill:#e8f5e9\n    style Models fill:#fff3e0\n    style OpenClawOnly fill:#fce4ec",
+                "caption": "SafetyMind 整体架构"
+              }
+            }
+          ]
+        },
+        {
+          "title": "组件分类与职责",
+          "anchor": "arch-components",
+          "groupTitle": "组件分类",
+          "difficulty": "beginner",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "SafetyMind 的 8 大安全组件按职责分为四类：双轨共享组件（同时服务两个 Agent）、安全分类模型（本地推理）、OpenClaw 专属组件、管理平台。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["分类", "组件", "语言", "核心职责"],
+                "rows": [
+                  ["双轨共享", "qise", "Python", "核心安全框架，14 个安全守卫 + 三层决策管线 + 透明代理 + SDK 适配器"],
+                  ["双轨共享", "ClawShell", "Rust", "安全特权代理，虚拟密钥隔离 + DLP 数据防泄漏 + 双 Agent 模式"],
+                  ["双轨共享", "Pipelock", "Go", "AI Agent 防火墙，可验证出站控制（VEC），65 种凭据 + 29 种注入检测"],
+                  ["双轨共享", "NemoClaw", "TypeScript", "NVIDIA 沙箱参考栈，支持 OpenClaw/Hermes/LangChain 三种 Agent"],
+                  ["安全模型", "CheryGuard", "Python", "基于 Qwen3-0.6B 微调的安全分类，Gen（生成式）+ Stream（判别式）双架构"],
+                  ["OpenClaw 专属", "ClawKeeper", "TypeScript", "三层防护框架：Skill 策略注入 + Plugin Hook 拦截 + Watcher 独立监控"],
+                  ["OpenClaw 专属", "AgentGuard", "Python", "零信任安全框架，四阶段干预 + 跨步骤攻击链检测 + ABAC 访问控制"],
+                  ["管理平台", "Aegis", "Python+React", "前后端管理平台，38 个页面 + 16 个后端服务，攻防演练可视化"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "模块交互关系",
+          "anchor": "arch-interactions",
+          "groupTitle": "模块依赖",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "各组件之间存在明确的交互关系。理解这些关系有助于把握数据流向和安全检查链路。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "ordered",
+                "items": [
+                  "**Agent → ClawShell**：Agent 的所有 API 请求首先经过 ClawShell 代理，完成虚拟密钥替换和 DLP 扫描",
+                  "**ClawShell → qise Proxy**：请求转发到 qise 的透明代理（端口 8822），14 个 Guard 对入口/出口/输出三阶段进行安全检查",
+                  "**qise → CheryGuard**：qise 的三层决策管线中，SLM 层调用 CheryGuard 进行本地安全分类判定",
+                  "**Agent → AgentGuard**：Agent 的每次工具调用都经过 AgentGuard 的四阶段干预检查",
+                  "**AgentGuard → ClawKeeper**：AgentGuard 检测到风险后，可触发 ClawKeeper 的 Watcher 层进行独立研判和干预",
+                  "**Aegis → 所有组件**：Aegis 后端通过 API 调用各组件的管理接口，前端展示统一的管理界面"
+                ]
+              }
+            },
+            {
+              "type": "diagram",
+              "diagram": {
+                "language": "mermaid",
+                "content": "sequenceDiagram\n    participant Agent as AI Agent\n    participant CS as ClawShell<br/>(L1)\n    participant QISE as qise<br/>(L2)\n    participant AG as AgentGuard<br/>(L3)\n    participant CK as ClawKeeper<br/>(L4)\n    participant NC as NemoClaw<br/>(L5)\n    \n    Agent->>CS: API 请求（虚拟密钥）\n    CS->>CS: 密钥替换 + DLP 扫描\n    CS->>QISE: 转发请求\n    QISE->>QISE: 14 Guard 三阶段检查\n    QISE->>AG: 安全检查通过\n    AG->>AG: 四阶段干预检查\n    AG->>CK: 工具调用审计\n    CK->>CK: Skill/Plugin/Watcher 检查\n    CK->>NC: 执行环境检查\n    NC-->>Agent: 安全执行结果",
+                "caption": "安全检查链路时序图"
+              }
+            }
+          ]
+        },
+        {
+          "title": "技术栈全景",
+          "anchor": "arch-techstack",
+          "groupTitle": "技术选型",
+          "difficulty": "beginner",
+          "estimatedMinutes": 5,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "SafetyMind 采用多语言技术栈，每个组件选择最适合其场景的语言和框架。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["层", "技术", "说明"],
+                "rows": [
+                  ["安全引擎", "Python, asyncio, 14 Guards, 三层管线, SDK 适配器", "qise 核心"],
+                  ["安全分类", "CheryGuard (Gen/Stream), PEFT (LoRA), Qwen3-0.6B", "本地安全模型"],
+                  ["零信任", "AgentGuard (Python)，四阶段干预，Trace Pattern 攻击链检测", "工具调用安全"],
+                  ["安全代理", "Rust (ClawShell), Go (Pipelock)", "高性能代理"],
+                  ["模型训练", "PyTorch, PEFT (LoRA), transformers, TRL (SFTTrainer)", "LoRA 微调"],
+                  ["后端", "FastAPI, httpx, Pydantic, WebSocket", "Aegis 后端"],
+                  ["前端", "React 19, Ant Design 5, ECharts, React Router", "Aegis 前端"],
+                  ["推理服务", "Ollama / llama.cpp (支持 logprobs), vLLM", "模型推理"],
+                  ["沙箱", "Docker, NemoClaw (NVIDIA OpenShell)", "运行环境隔离"],
+                  ["集成", "Proxy 代理, MCP Server, QiseHermesAdapter SDK", "组件接入"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

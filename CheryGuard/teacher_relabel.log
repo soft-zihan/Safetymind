@@ -1,0 +1,54 @@
+============================================================
+  CheryGuard - 教师蒸馏标注
+============================================================
+  加载样本: 29449
+  限制为: 2000
+
+[19:17:46] 开始教师蒸馏标注...
+  总样本数: 2000
+  教师模型: qwen3.7-plus (DashScope)
+  并发数: 5, 批大小: 20
+  预计耗时: ~80 分钟
+  进度: 100/2000 (5.0%) | 已耗时 ~240s | 预计剩余 ~4560s
+  进度: 200/2000 (10.0%) | 已耗时 ~480s | 预计剩余 ~4320s
+  进度: 300/2000 (15.0%) | 已耗时 ~720s | 预计剩余 ~4080s
+  进度: 400/2000 (20.0%) | 已耗时 ~960s | 预计剩余 ~3840s
+  进度: 500/2000 (25.0%) | 已耗时 ~1200s | 预计剩余 ~3600s
+  [检查点] 已保存 500 条到 /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/relabeled/checkpoint_500.jsonl
+  进度: 600/2000 (30.0%) | 已耗时 ~1440s | 预计剩余 ~3360s
+  进度: 700/2000 (35.0%) | 已耗时 ~1680s | 预计剩余 ~3120s
+  进度: 800/2000 (40.0%) | 已耗时 ~1920s | 预计剩余 ~2880s
+  进度: 900/2000 (45.0%) | 已耗时 ~2160s | 预计剩余 ~2640s
+  进度: 1000/2000 (50.0%) | 已耗时 ~2400s | 预计剩余 ~2400s
+  [检查点] 已保存 1000 条到 /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/relabeled/checkpoint_1000.jsonl
+  进度: 1100/2000 (55.0%) | 已耗时 ~2640s | 预计剩余 ~2160s
+  进度: 1200/2000 (60.0%) | 已耗时 ~2880s | 预计剩余 ~1920s
+  进度: 1300/2000 (65.0%) | 已耗时 ~3120s | 预计剩余 ~1680s
+  进度: 1400/2000 (70.0%) | 已耗时 ~3360s | 预计剩余 ~1440s
+  进度: 1500/2000 (75.0%) | 已耗时 ~3600s | 预计剩余 ~1200s
+  [检查点] 已保存 1500 条到 /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/relabeled/checkpoint_1500.jsonl
+  进度: 1600/2000 (80.0%) | 已耗时 ~3840s | 预计剩余 ~960s
+  进度: 1700/2000 (85.0%) | 已耗时 ~4080s | 预计剩余 ~720s
+  进度: 1800/2000 (90.0%) | 已耗时 ~4320s | 预计剩余 ~480s
+  进度: 1900/2000 (95.0%) | 已耗时 ~4560s | 预计剩余 ~240s
+  进度: 2000/2000 (100.0%) | 已耗时 ~4800s | 预计剩余 ~0s
+  [检查点] 已保存 2000 条到 /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/relabeled/checkpoint_2000.jsonl
+
+[20:57:20] 标注完成，保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/relabeled/all_samples.jsonl
+
+============================================================
+  标签分析
+============================================================
+  总样本: 2000
+  标注失败: 11 (0.6%)
+
+  安全等级分布:
+Traceback (most recent call last):
+  File "/Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/02_teacher_relabel.py", line 199, in <module>
+    main()
+  File "/Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/02_teacher_relabel.py", line 195, in main
+    analyze_labels(relabeled)
+  File "/Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/02_teacher_relabel.py", line 139, in analyze_labels
+    for label, count in sorted(safety_dist.items()):
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'NoneType' and 'str'

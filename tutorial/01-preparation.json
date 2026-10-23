@@ -1,0 +1,139 @@
+{
+  "chapters": [
+    {
+      "id": "preparation",
+      "title": "前置准备",
+      "sections": [
+        {
+          "title": "为什么需要 AI Agent 安全防护？",
+          "anchor": "prep-why-security",
+          "groupTitle": "背景知识",
+          "difficulty": "beginner",
+          "estimatedMinutes": 8,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "AI Agent 越来越强大，但「裸奔」的 Agent 面临严峻的安全风险。与传统软件不同，Agent 具有自主决策能力，可以调用工具、访问网络、执行代码——这意味着一旦被攻击，危害远超传统软件漏洞。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "🔓 **密钥泄露** — Agent 持有 API Key，一旦被注入即可盗用",
+                  "📤 **数据外传** — Agent 可能将用户隐私数据发送到恶意端点",
+                  "💉 **提示注入** — 攻击者通过构造输入劫持 Agent 行为",
+                  "🔗 **攻击链** — 多步骤组合操作（读敏感文件→上传外部）绕过单点检测",
+                  "🛠️ **工具投毒** — 恶意工具定义诱导 Agent 执行危险操作"
+                ]
+              }
+            },
+            {
+              "type": "text",
+              "text": "SafetyMind 的解决方案是**纵深防御（Defense in Depth）**——不依赖任何单一安全层，而是通过 5 层互补的防护机制，确保即使某一层被突破，后续层仍能拦截威胁。"
+            }
+          ]
+        },
+        {
+          "title": "5 层纵深防御模型",
+          "anchor": "prep-defense-layers",
+          "groupTitle": "核心架构",
+          "difficulty": "beginner",
+          "estimatedMinutes": 10,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "SafetyMind 采用 5 层纵深防御模型，从外到内逐层拦截安全威胁。每一层由不同的组件负责，各层互补，形成完整的安全防护链。"
+            },
+            {
+              "type": "diagram",
+              "diagram": {
+                "language": "mermaid",
+                "content": "graph TD\n    A[Agent 请求] --> L1\n    L1[L1: ClawShell DLP<br/>虚拟密钥隔离 + 敏感数据过滤] --> L2\n    L2[L2: qise 安全守卫<br/>14 个守卫 + 三层决策管线] --> L3\n    L3[L3: AgentGuard 零信任<br/>四阶段干预 + 攻击链检测] --> L4\n    L4[L4: ClawKeeper 三层防护<br/>Skill 策略 + Plugin 拦截 + Watcher 监控] --> L5\n    L5[L5: NemoClaw / Docker 沙箱<br/>网络隔离 + 只读根文件系统] --> B[安全执行]\n    style L1 fill:#e1f5fe\n    style L2 fill:#b3e5fc\n    style L3 fill:#81d4fa\n    style L4 fill:#4fc3f7\n    style L5 fill:#29b6f6",
+                "caption": "5 层纵深防御模型"
+              }
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["层级", "组件", "防护目标", "拦截方式"],
+                "rows": [
+                  ["L1", "ClawShell", "密钥与数据", "虚拟密钥隔离，Agent 永远不接触真实 API Key；DLP 扫描过滤 SSN/信用卡/手机号"],
+                  ["L2", "qise", "输入/输出安全", "14 个 Guard 覆盖 Ingress/Egress/Output 三阶段，Rules→SLM→LLM 三层决策"],
+                  ["L3", "AgentGuard", "工具调用安全", "零信任四阶段干预，跨步骤攻击链检测（如「读敏感文件→上传外部」）"],
+                  ["L4", "ClawKeeper", "行为与策略", "Skill 策略注入约束行为，Plugin Hook 拦截危险操作，Watcher 独立监控"],
+                  ["L5", "NemoClaw/Docker", "运行环境", "沙箱网络隔离（none），只读根文件系统，进程权限降级"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "双龙虾对比：裸奔 vs 安全",
+          "anchor": "prep-dual-lobster",
+          "groupTitle": "核心概念",
+          "difficulty": "beginner",
+          "estimatedMinutes": 5,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "SafetyMind 通过「裸奔龙虾」和「安全龙虾」的对比，直观展示安全防护的效果。这是 Aegis 管理平台攻防演练页面的核心展示内容。"
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["维度", "裸奔龙虾（无防护）", "安全龙虾（完整防御）"],
+                "rows": [
+                  ["API Key 保护", "直接持有真实 Key", "ClawShell 虚拟密钥隔离"],
+                  ["输入检查", "无", "qise 14 个 Guard 实时检查"],
+                  ["工具调用", "无审计", "AgentGuard 四阶段干预"],
+                  ["行为约束", "无", "ClawKeeper Skill 策略注入"],
+                  ["运行环境", "宿主机直接运行", "NemoClaw 沙箱隔离"],
+                  ["安全评分", "20 分", "95 分"],
+                  ["16 种攻击场景", "全部成功", "逐层拦截"]
+                ]
+              }
+            },
+            {
+              "type": "text",
+              "text": "前端攻防演练页面实时展示各层拦截情况，帮助理解纵深防御的实际效果。"
+            }
+          ]
+        },
+        {
+          "title": "环境准备与快速启动",
+          "anchor": "prep-setup",
+          "groupTitle": "快速开始",
+          "difficulty": "beginner",
+          "estimatedMinutes": 10,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "SafetyMind 的启动依赖 Python 和 Node.js 环境。可选安装 Docker（沙箱隔离）、Ollama（本地模型）、Rust/Cargo（ClawShell 编译）。"
+            },
+            {
+              "type": "code",
+              "code": {
+                "language": "bash",
+                "content": "# 1. 克隆项目\ngit clone <repo-url> && cd Safetymind\n\n# 2. 配置环境变量\ncp Aegis/backend/.env.example Aegis/backend/.env\n# 编辑 .env 填入 API Key 等配置\n\n# 3. 一键启动\ncd Aegis && ./start.sh start",
+                "caption": "一键启动 SafetyMind"
+              }
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["服务", "地址", "说明"],
+                "rows": [
+                  ["前端界面", "http://localhost:5173", "React + Ant Design 管理平台"],
+                  ["后端 API", "http://localhost:8000/docs", "FastAPI 自动生成的 Swagger 文档"],
+                  ["Ollama 模型", "http://localhost:11434", "本地安全模型推理服务"],
+                  ["ClawShell 代理", "http://localhost:21789", "安全特权代理服务"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

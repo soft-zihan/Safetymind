@@ -1,0 +1,46 @@
+============================================================
+  CheryGuard - Stream 训练
+============================================================
+  设备: mps
+
+[12:11:04] 加载数据...
+  训练样本: 200
+
+[12:11:04] 创建模型...
+  加载基座: Qwen/Qwen3-0.6B-Base
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:   0%|          | 1/310 [00:00<04:16,  1.20it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 347.88it/s]
+  总参数: 607.2M
+  可训练: 11.2M (1.8%)
+
+[12:11:07] 开始训练...
+  epochs: 3
+  batch_size: 1 x 8 accumulation
+  Epoch 1 | Batch 50/200 | Loss: 2.2911 | Risk: 0.8857 | Cat: 0.4737
+  Epoch 1 | Batch 100/200 | Loss: 1.9471 | Risk: 0.7190 | Cat: 0.4783
+  Epoch 1 | Batch 150/200 | Loss: 1.7089 | Risk: 0.6510 | Cat: 0.3836
+  Epoch 1 | Batch 200/200 | Loss: 1.7250 | Risk: 0.6735 | Cat: 0.3715
+
+  Epoch 1 完成 | Avg Loss: 1.7250 | Risk: 0.6735 | Cat: 0.3715
+  Checkpoint: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/stream/scripts/../outputs/checkpoint-epoch-1
+  Epoch 2 | Batch 50/200 | Loss: 1.0894 | Risk: 0.4245 | Cat: 0.2205
+  Epoch 2 | Batch 100/200 | Loss: 0.9340 | Risk: 0.3434 | Cat: 0.2309
+  Epoch 2 | Batch 150/200 | Loss: 0.8012 | Risk: 0.2869 | Cat: 0.2129
+  Epoch 2 | Batch 200/200 | Loss: 0.6978 | Risk: 0.2467 | Cat: 0.1935
+
+  Epoch 2 完成 | Avg Loss: 0.6978 | Risk: 0.2467 | Cat: 0.1935
+  Checkpoint: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/stream/scripts/../outputs/checkpoint-epoch-2
+  Epoch 3 | Batch 50/200 | Loss: 0.1049 | Risk: 0.0409 | Cat: 0.0301
+  Epoch 3 | Batch 100/200 | Loss: 0.1611 | Risk: 0.0364 | Cat: 0.0944
+  Epoch 3 | Batch 150/200 | Loss: 0.1747 | Risk: 0.0471 | Cat: 0.0875
+  Epoch 3 | Batch 200/200 | Loss: 0.1379 | Risk: 0.0369 | Cat: 0.0695
+
+  Epoch 3 完成 | Avg Loss: 0.1379 | Risk: 0.0369 | Cat: 0.0695
+  Checkpoint: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/stream/scripts/../outputs/checkpoint-epoch-3
+
+[12:14:38] 保存最终模型...
+
+============================================================
+  ✅ Stream 训练完成!
+  LoRA adapter: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/stream/scripts/../outputs/lora_adapter/
+  Stream heads: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/stream/scripts/../outputs/stream_heads.pt
+============================================================

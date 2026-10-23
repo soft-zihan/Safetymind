@@ -1,0 +1,27 @@
+[17:49:33] 开始教师验证...
+  教师模型: qwen3.7-plus
+  测试样本数: 前 50 条
+
+[17:49:33] 下载 Qwen/Qwen3GuardTest 测试集...
+  测试集大小: 1059 条
+  字段: ['unique_id', 'message', 'unsafe_type', 'source', 'label', 'input_ids', 'unsafe_end_index', 'unsafe_start_index']
+
+[17:49:38] 开始标注...
+  进度: 20/50
+  进度: 40/50
+
+[18:01:28] 计算指标...
+
+============================================================
+  教师验证结果
+============================================================
+  样本数: 50
+  格式错误: 0 (0.0%)
+  准确率: 0.7600
+  三分类 Macro F1: 0.4926
+  二分类 F1: 0.6857
+============================================================
+
+  结果已保存到: /Users/han/Documents/projects/Safetymind/qise/model_training/qwen3guard/gen/scripts/../data/teacher_validation_results.json
+
+  ⚠️ 警告: 教师 F1=0.6857 < 0.75，建议调整 constitution prompt 重新测试

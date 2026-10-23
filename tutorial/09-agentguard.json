@@ -1,0 +1,145 @@
+{
+  "chapters": [
+    {
+      "id": "practice",
+      "title": "实战演练",
+      "sections": [
+        {
+          "title": "背景知识：AgentGuard 零信任安全框架",
+          "anchor": "practice-agentguard-background",
+          "groupTitle": "AgentGuard — 零信任安全框架",
+          "difficulty": "beginner",
+          "estimatedMinutes": 6,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "AgentGuard 是面向 AI 智能体的零信任安全防护框架，在 LLM 调用前后及工具执行前后进行安全风险识别与拦截，同时支持事后审计。"
+            },
+            {
+              "type": "text",
+              "text": "AgentGuard 是 SafetyMind 的**零信任安全基座**。它的核心思想是：**不信任任何单次工具调用，也不信任跨步骤的行为组合**。通过四阶段干预和攻击链检测，确保 Agent 的每一步操作都在安全护栏内。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "🌐 **语言**：Python",
+                  "📜 **许可**：GPLv3",
+                  "🔌 **适配**：LangChain / AutoGen / OpenAI Agents SDK / LangGraph / LlamaIndex / Dify / OpenClaw",
+                  "🛡️ **核心能力**：四阶段干预 + 攻击链检测 + ABAC 访问控制"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "四阶段干预机制",
+          "anchor": "practice-agentguard-four-stages",
+          "groupTitle": "AgentGuard — 零信任安全框架",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 10,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "AgentGuard 在 Agent 执行循环的四个关键节点介入，每个阶段都可以放行、拦截或告警。"
+            },
+            {
+              "type": "diagram",
+              "diagram": {
+                "language": "mermaid",
+                "content": "graph TD\n    A[① LLM 调用前<br/>输入安全检查] --> B[LLM 调用]\n    B --> C[② LLM 调用后<br/>输出安全审查]\n    C --> D[③ 工具调用前<br/>参数安全检查]\n    D --> E[工具执行]\n    E --> F[④ 工具执行后<br/>结果安全审计]\n    F --> G{决策}\n    G -->|放行| H[继续执行]\n    G -->|拦截| I[阻止操作]\n    G -->|告警| J[记录事件]\n    style A fill:#e8f5e9\n    style C fill:#fff3e0\n    style D fill:#e3f2fd\n    style F fill:#fce4ec",
+                "caption": "四阶段干预机制"
+              }
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["阶段", "时机", "检查内容"],
+                "rows": [
+                  ["① LLM 调用前", "输入发送给 LLM 之前", "输入安全检查（提示注入、恶意内容）"],
+                  ["② LLM 调用后", "LLM 返回结果后", "输出安全审查（凭据泄露、PII）"],
+                  ["③ 工具调用前", "工具执行之前", "参数安全检查（危险参数、越权操作）"],
+                  ["④ 工具执行后", "工具返回结果后", "结果安全审计（敏感数据、异常输出）"]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "攻击链检测：Trace Pattern",
+          "anchor": "practice-agentguard-attack-chain",
+          "groupTitle": "AgentGuard — 零信任安全框架",
+          "difficulty": "advanced",
+          "estimatedMinutes": 10,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "AgentGuard 的独特能力——不仅判断单次调用，还能检测**跨步骤攻击链**。这是通过 **Trace Pattern** 机制实现的。"
+            },
+            {
+              "type": "text",
+              "text": "示例攻击链：读取 /etc/passwd（单看无害）→ 读取 ~/.ssh/id_rsa（单看可疑但不确定）→ 上传到 external.com（组合判定：数据外传攻击！）"
+            },
+            {
+              "type": "diagram",
+              "diagram": {
+                "language": "mermaid",
+                "content": "sequenceDiagram\n    participant Agent as AI Agent\n    participant AG as AgentGuard\n    participant FS as 文件系统\n    participant Net as 网络\n    \n    Agent->>AG: 步骤1: 读取 /etc/passwd\n    AG->>AG: 单步检查：无害\n    AG->>FS: 放行\n    FS-->>AG: 文件内容\n    \n    Agent->>AG: 步骤2: 读取 ~/.ssh/id_rsa\n    AG->>AG: 单步检查：可疑\n    AG->>AG: Trace Pattern: 记录上下文\n    AG->>FS: 放行（观察）\n    FS-->>AG: SSH 密钥\n    \n    Agent->>AG: 步骤3: 上传到 external.com\n    AG->>AG: Trace Pattern: 检测攻击链！\n    AG->>AG: 组合判定：数据外传\n    AG-->>Agent: 拦截！\n    note over AG: 攻击链检测：<br/>读敏感文件→上传外部",
+                "caption": "攻击链检测示例"
+              }
+            }
+          ]
+        },
+        {
+          "title": "ABAC 访问控制与集群管理",
+          "anchor": "practice-agentguard-abac",
+          "groupTitle": "AgentGuard — 零信任安全框架",
+          "difficulty": "intermediate",
+          "estimatedMinutes": 6,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "AgentGuard 提供基于属性的访问控制（ABAC）和集中式集群管理能力。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "📋 **ABAC 访问控制**：DSL 定义策略规则，属性级权限管理，支持上下文条件",
+                  "🖥️ **可视化策略配置**：Web 控制台，交互式策略配置，动态热更新",
+                  "🌐 **集中式集群管理**：中控架构统一管理分布式智能体，策略统一下发",
+                  "🔌 **模块化 Plugin 架构**：客户端与服务端均支持可插拔插件"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": "模块总结",
+          "anchor": "practice-agentguard-summary",
+          "groupTitle": "AgentGuard — 零信任安全框架",
+          "difficulty": "beginner",
+          "estimatedMinutes": 3,
+          "blocks": [
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "✅ AgentGuard 是 SafetyMind 的零信任安全基座",
+                  "✅ 四阶段干预：LLM/工具调用前后持续介入",
+                  "✅ Trace Pattern 攻击链检测：跨步骤行为分析，识别组合攻击",
+                  "✅ ABAC 访问控制 + 集中式集群管理",
+                  "🔗 **与 ClawKeeper 的关系**：AgentGuard 检测到风险后可触发 ClawKeeper Watcher 层独立研判",
+                  "🔗 **与 Aegis 的关系**：Aegis 通过 `/api/openclaw/agentguard` 管理 AgentGuard"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

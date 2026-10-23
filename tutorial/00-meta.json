@@ -1,0 +1,50 @@
+{
+  "chapters": [
+    {
+      "id": "meta",
+      "title": "项目元数据",
+      "sections": [
+        {
+          "title": "SafetyMind — 双轨 AI 智能体安全防护平台",
+          "anchor": "meta-overview",
+          "groupTitle": "项目概览",
+          "difficulty": "beginner",
+          "estimatedMinutes": 5,
+          "blocks": [
+            {
+              "type": "text",
+              "text": "SafetyMind 是一个面向 AI 智能体的全方位安全管理平台，围绕 OpenClaw（金刚龙虾）与 Hermes（铁翼信使）两大智能体，提供多套安全方案的集成与统一管理。"
+            },
+            {
+              "type": "list",
+              "list": {
+                "style": "icon",
+                "items": [
+                  "🛡️ **5 层纵深防御**：从密钥隔离到沙箱隔离，逐层拦截安全威胁",
+                  "🔧 **8 大安全组件**：qise、ClawKeeper、ClawShell、Pipelock、NemoClaw、CheryGuard、AgentGuard、Aegis",
+                  "🦞 **双龙虾对比**：裸奔龙虾（无防护）vs 安全龙虾（完整防御），直观展示加固效果",
+                  "🌐 **多语言技术栈**：Python / Rust / Go / TypeScript / React"
+                ]
+              }
+            },
+            {
+              "type": "table",
+              "table": {
+                "headers": ["属性", "值"],
+                "rows": [
+                  ["项目名称", "SafetyMind"],
+                  ["核心定位", "AI 智能体全方位安全管理平台"],
+                  ["防护对象", "OpenClaw（金刚龙虾）、Hermes（铁翼信使）"],
+                  ["防御层数", "5 层纵深防御"],
+                  ["组件数量", "8 大安全组件"],
+                  ["主要语言", "Python, Rust, Go, TypeScript, React"],
+                  ["开源许可", "MIT"]
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

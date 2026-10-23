@@ -1,0 +1,12 @@
+{
+  "total": 5076,
+  "prompt_samples": 2755,
+  "response_samples": 2321,
+  "skipped": 52,
+  "prompt_safe": 1161,
+  "prompt_unsafe": 1594,
+  "response_safe": 1115,
+  "response_unsafe": 1206,
+  "timestamp": "2026-07-31T20:02:30.757849",
+  "notes": "v2: 双 head 修复版。砍掉 category head 和 Controversial，二分类 Safe/Unsafe。prompt 样本训练 query risk head，response 样本训练 response risk head。"
+}
